@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         String    @default("EDITOR") // ADMIN | EDITOR
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}
+
+model Author {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  jobTitle    String   @default("")
+  bio         String   @default("")
+  avatarUrl   String   @default("")
+  expertise   String   @default("") // comma-separated
+  linkedinUrl String   @default("")
+  xUrl        String   @default("")
+  websiteUrl  String   @default("")
+  createdAt   DateTime @default(now())
+  posts       Post[]
+}
+
+model Category {
+  id          String @id @default(cuid())
+  slug        String @unique
+  name        String
+  description String @default("")
+  sortOrder   Int    @default(0)
+  posts       Post[]
+}
+
+model Tag {
+  id          String @id @default(cuid())
+  slug        String @unique
+  name        String
+  description String @default("")
+  posts       Post[]
+}
+
+model Post {
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  type           String    @default("BLOG") // NEWS | BLOG
+  status         String    @default("DRAFT") // DRAFT | PUBLISHED
+  title          String
+  excerpt        String    @default("")
+  content        String    @default("")
+  keyTakeaways   String    @default("") // one per line
+  faqs           String    @default("[]") // JSON: [{ q, a }]
+  sources        String    @default("[]") // JSON: [{ title, url }]
+  coverImage     String    @default("")
+  coverAlt       String    @default("")
+  coverCaption   String    @default("")
+  seoTitle       String    @default("")
+  seoDescription String    @default("")
+  canonicalUrl   String    @default("")
+  noindex        Boolean   @default(false)
+  featured       Boolean   @default(false)
+  readingMinutes Int       @default(1)
+  publishedAt    DateTime?
+  modifiedAt     DateTime  @default(now())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  authorId       String
+  author         Author    @relation(fields: [authorId], references: [id])
+  categoryId     String
+  category       Category  @relation(fields: [categoryId], references: [id])
+  tags           Tag[]
+
+  @@index([status, publishedAt])
+  @@index([type, status, publishedAt])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String   @unique
+  mime      String
+  size      Int
+  alt       String   @default("")
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String   @default("")
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String   @default("")
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
