@@ -58,6 +58,12 @@ const categories = [
     name: "Standards & Regulation",
     description: "The standards and laws that shape automation — IEC, ISO and ISA standards plus EU and US regulation affecting machine builders, vendors and plant operators.",
   },
+  {
+    slug: "suppliers-services",
+    name: "Suppliers & Services",
+    description:
+      "Profiles of automation spare-parts suppliers, repair centers and service providers, based on published company information and reviewed by Induqora editors.",
+  },
 ];
 
 const authors = [
@@ -121,7 +127,9 @@ async function main() {
   }
 
   const dir = path.join(import.meta.dirname, "content");
-  const files = readdirSync(dir).filter((f) => f.endsWith(".md"));
+  // Optional CLI args limit the import to specific files, e.g. `node prisma/seed.mjs new-article.md`.
+  const only = process.argv.slice(2);
+  const files = readdirSync(dir).filter((f) => f.endsWith(".md") && (!only.length || only.includes(f)));
   for (const file of files) {
     const { meta, body, takeaways, faqs, sources } = parseArticle(readFileSync(path.join(dir, file), "utf8"));
     const category = await db.category.findUniqueOrThrow({ where: { slug: meta.category } });
