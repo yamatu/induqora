@@ -9,7 +9,7 @@ export const revalidate = 300;
 
 const title = "Insights & Technical Guides";
 const description =
-  "In-depth guides, explainers and engineering analysis for controls engineers: PLC programming, PID tuning, industrial protocols, SCADA architecture, OT security and smart manufacturing.";
+  "In-depth technical guides for controls engineers: PLC programming, PID tuning, industrial networks, SCADA architecture, OT security, drives and robotics.";
 
 type Props = { searchParams: Promise<{ page?: string }> };
 

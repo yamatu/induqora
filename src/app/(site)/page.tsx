@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { PostCard, PostCardFeature, PostListItem } from "@/components/PostCard";
 import { db } from "@/lib/db";
 import { cardInclude, publishedWhere } from "@/lib/posts";
-import { pageMetadata } from "@/lib/seo";
+import { collectionJsonLd, graph, pageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export const revalidate = 300;
 
+const homeDescription =
+  "Independent industrial automation news, technical guides and OT security analysis covering PLCs, DCS, SCADA, industrial networking, drives, robotics and IIoT.";
+
 export const metadata: Metadata = pageMetadata({
-  title: `${siteConfig.name} — Industrial Automation & Control News, Guides and Analysis`,
-  description: siteConfig.description,
+  title: `${siteConfig.name} — Industrial Automation & Control News and Guides`,
+  description: homeDescription,
   path: "/",
   absoluteTitle: true,
 });
@@ -42,9 +46,20 @@ export default async function HomePage() {
   const sideNews = latestNews.filter((p) => p.id !== hero?.id).slice(0, 5);
   const newsGrid = latestNews.filter((p) => p.id !== hero?.id && !sideNews.includes(p)).slice(0, 3);
   const blogGrid = latestBlog.filter((p) => p.id !== hero?.id).slice(0, 6);
+  const listedPosts = [hero, ...sideNews, ...newsGrid, ...blogGrid].filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
     <div className="container-page pt-8">
+      <JsonLd
+        data={graph(
+          collectionJsonLd({
+            name: `${siteConfig.name} — ${siteConfig.tagline}`,
+            description: homeDescription,
+            path: "/",
+            items: listedPosts,
+          }),
+        )}
+      />
       <section className="mb-10 max-w-3xl">
         <h1 className="font-serif text-2xl font-bold text-ink sm:text-3xl">Industrial automation and control — news, guides and engineering analysis</h1>
         <p className="mt-2 text-steel">

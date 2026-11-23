@@ -39,7 +39,7 @@ function TableOfContents({ toc }: { toc: TocItem[] }) {
   );
 }
 
-function ShareLinks({ url, title }: { url: string; title: string }) {
+function ShareLinks({ url, title, slug }: { url: string; title: string; slug: string }) {
   const u = encodeURIComponent(url);
   const t = encodeURIComponent(title);
   const links = [
@@ -55,6 +55,9 @@ function ShareLinks({ url, title }: { url: string; title: string }) {
           {l.label}
         </a>
       ))}
+      <a href={`/md/${slug}`} className="rounded-md border border-line px-3 py-1 text-muted hover:bg-paper hover:text-ink" title="Clean Markdown for AI tools and engineers">
+        Markdown
+      </a>
     </div>
   );
 }
@@ -101,7 +104,7 @@ export function ArticleView({
             </Link>
           </p>
           <h1 className="mt-4 font-serif text-3xl leading-tight font-bold text-ink sm:text-4xl lg:text-[2.75rem]">{post.title}</h1>
-          {post.excerpt && <p className="mt-4 text-lg leading-8 text-steel sm:text-xl">{post.excerpt}</p>}
+          {post.excerpt && <p className="article-excerpt mt-4 text-lg leading-8 text-steel sm:text-xl">{post.excerpt}</p>}
 
           <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-line py-4 text-sm">
             <div className="flex items-center gap-3">
@@ -215,7 +218,7 @@ export function ArticleView({
                 ))}
               </ul>
             )}
-            <ShareLinks url={absoluteUrl(postPath(post))} title={post.title} />
+            <ShareLinks url={absoluteUrl(postPath(post))} title={post.title} slug={post.slug} />
           </div>
 
           <section aria-label="About the author" className="mt-10 flex gap-4 rounded-lg bg-paper p-6">

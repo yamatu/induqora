@@ -5,8 +5,8 @@ import { ArticleView, articleBreadcrumbs } from "@/components/ArticleView";
 import { JsonLd } from "@/components/JsonLd";
 import { renderMarkdown } from "./markdown";
 import { getAdjacentPosts, getPublishedPost, getRelatedPosts } from "./posts";
-import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, graph, ogImagePath, pageMetadata } from "./seo";
-import { postPath, siteConfig } from "./site";
+import { articleJsonLd, breadcrumbJsonLd, effectiveModifiedDate, faqJsonLd, feedAlternates, graph, ogImagePath, pageMetadata } from "./seo";
+import { absoluteUrl, postPath, siteConfig } from "./site";
 import { parseJsonArray, stripMarkdown, type Faq } from "./utils";
 
 const loadPost = cache(async (slug: string, type: string) => {
@@ -22,9 +22,17 @@ export async function articleMetadata(slug: string, type: string): Promise<Metad
   const title = post.seoTitle || post.title;
   const description = post.seoDescription || post.excerpt;
   const base = pageMetadata({ title, description, path: postPath(post), ogType: "article", image: ogImagePath(post), noindex: post.noindex });
+  const modified = effectiveModifiedDate(post);
   return {
     ...base,
-    alternates: { ...base.alternates, canonical: post.canonicalUrl || base.alternates?.canonical },
+    alternates: {
+      ...base.alternates,
+      canonical: post.canonicalUrl || base.alternates?.canonical,
+      types: {
+        ...feedAlternates,
+        "text/markdown": [{ url: absoluteUrl(`/md/${post.slug}`), title: `${post.title} (Markdown)` }],
+      },
+    },
     authors: [{ name: post.author.name, url: `${siteConfig.url}/author/${post.author.slug}` }],
     keywords: post.tags.map((t) => t.name),
     category: post.category.name,
@@ -32,7 +40,7 @@ export async function articleMetadata(slug: string, type: string): Promise<Metad
       ...base.openGraph,
       type: "article",
       publishedTime: post.publishedAt?.toISOString(),
-      modifiedTime: post.modifiedAt.toISOString(),
+      modifiedTime: modified.toISOString(),
       authors: [`${siteConfig.url}/author/${post.author.slug}`],
       section: post.category.name,
       tags: post.tags.map((t) => t.name),

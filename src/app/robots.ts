@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 const AI_CRAWLERS = [
   "GPTBot",
@@ -13,6 +13,10 @@ const AI_CRAWLERS = [
   "Google-Extended",
   "Applebot-Extended",
   "Bingbot",
+  "Amazonbot",
+  "MistralAI-User",
+  "YouBot",
+  "Cohere-ai",
   "CCBot",
   "Meta-ExternalAgent",
   "DuckAssistBot",
@@ -21,12 +25,13 @@ const AI_CRAWLERS = [
 const disallow = ["/admin", "/api/", "/search"];
 
 export default function robots(): MetadataRoute.Robots {
+  const host = new URL(siteConfig.url).host;
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow },
       { userAgent: AI_CRAWLERS, allow: "/", disallow },
     ],
     sitemap: [absoluteUrl("/sitemap.xml"), absoluteUrl("/news-sitemap.xml")],
-    host: absoluteUrl("/"),
+    host,
   };
 }

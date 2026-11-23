@@ -4,14 +4,17 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { db } from "@/lib/db";
 import { publishedWhere } from "@/lib/posts";
-import { breadcrumbJsonLd, graph, pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, graph, linkListCollectionJsonLd, pageMetadata } from "@/lib/seo";
 import { postPath } from "@/lib/site";
 
 export const revalidate = 300;
 
+const description =
+  "Browse Induqora coverage by discipline: PLCs, DCS, SCADA, industrial networking, OT cybersecurity, motion control, robotics, IIoT and standards.";
+
 export const metadata: Metadata = pageMetadata({
   title: "Topics",
-  description: "Browse Induqora coverage by topic: PLCs, DCS and process control, SCADA and HMI, industrial networking, OT cybersecurity, motion control, robotics, IIoT and standards.",
+  description,
   path: "/topics",
 });
 
@@ -35,9 +38,19 @@ export default async function TopicsPage() {
     { name: "Topics", path: "/topics" },
   ];
 
+  const ld = graph(
+    linkListCollectionJsonLd({
+      name: "Industrial Automation Topics",
+      description,
+      path: "/topics",
+      items: categories.map((c) => ({ path: `/category/${c.slug}`, name: c.name, description: c.description })),
+    }),
+    breadcrumbJsonLd(crumbs),
+  );
+
   return (
     <div className="container-page pt-8">
-      <JsonLd data={graph(breadcrumbJsonLd(crumbs))} />
+      <JsonLd data={ld} />
       <Breadcrumbs items={crumbs} />
       <header className="mt-6 mb-12 max-w-3xl">
         <h1 className="font-serif text-3xl font-bold text-ink sm:text-4xl">Topics</h1>

@@ -16,11 +16,13 @@ type PageMetaInput = {
 export const feedAlternates = {
   "application/rss+xml": [{ url: "/rss.xml", title: `${siteConfig.name} — All stories` }],
   "application/feed+json": [{ url: "/feed.json", title: `${siteConfig.name} — JSON Feed` }],
+  "text/plain": [{ url: "/llms.txt", title: `${siteConfig.name} — LLMs.txt` }],
 };
 
 export function pageMetadata({ title, description, path, noindex, ogType = "website", image = "/og/default", absoluteTitle }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
   const fullTitle = absoluteTitle ? title : `${title} | ${siteConfig.name}`;
+  const imageUrl = image ? absoluteUrl(image) : "";
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
@@ -33,9 +35,9 @@ export function pageMetadata({ title, description, path, noindex, ogType = "webs
       description,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
-      ...(image ? { images: [{ url: absoluteUrl(image) }] } : {}),
+      ...(imageUrl ? { images: [{ url: imageUrl, width: 1200, height: 630, alt: fullTitle }] } : {}),
     },
-    twitter: { card: "summary_large_image", title: fullTitle, description, ...(image ? { images: [absoluteUrl(image)] } : {}) },
+    twitter: { card: "summary_large_image", title: fullTitle, description, ...(imageUrl ? { images: [imageUrl] } : {}) },
   };
 }
 
@@ -71,6 +73,8 @@ export function organizationJsonLd() {
       "Motion control",
       "Industrial robotics",
       "Industrial IoT",
+      "Smart manufacturing",
+      "Functional safety",
     ],
     ...(sameAs.length ? { sameAs } : {}),
   };
@@ -124,11 +128,17 @@ export function personJsonLd(author: Author) {
 
 type FullPost = Post & { author: Author; category: Category; tags: Tag[] };
 
+export function effectiveModifiedDate(post: { publishedAt: Date | null; modifiedAt: Date }) {
+  return post.publishedAt && post.modifiedAt < post.publishedAt ? post.publishedAt : post.modifiedAt;
+}
+
 export function articleJsonLd(post: FullPost, wordCount: number) {
   const url = absoluteUrl(postPath(post));
   const schemaType = POST_TYPES[post.type as PostType]?.schemaType ?? "Article";
   const takeaways = parseLines(post.keyTakeaways);
   const sources = parseJsonArray<Source>(post.sources);
+  const modified = effectiveModifiedDate(post);
+  const imageUrl = absoluteUrl(ogImagePath(post));
   return {
     "@type": schemaType,
     "@id": `${url}#article`,
@@ -137,9 +147,9 @@ export function articleJsonLd(post: FullPost, wordCount: number) {
     headline: post.title.slice(0, 110),
     description: post.seoDescription || post.excerpt,
     ...(takeaways.length ? { abstract: takeaways.join(" ") } : {}),
-    image: [absoluteUrl(ogImagePath(post))],
+    image: [{ "@type": "ImageObject", url: imageUrl, width: 1200, height: 630 }],
     datePublished: post.publishedAt?.toISOString(),
-    dateModified: (post.modifiedAt > (post.publishedAt ?? post.modifiedAt) ? post.modifiedAt : post.publishedAt)?.toISOString(),
+    dateModified: modified.toISOString(),
     author: [personJsonLd(post.author)],
     publisher: { "@id": organizationId },
     isPartOf: { "@id": websiteId },
@@ -148,7 +158,12 @@ export function articleJsonLd(post: FullPost, wordCount: number) {
     about: post.tags.map((t) => ({ "@type": "Thing", name: t.name })),
     inLanguage: siteConfig.language,
     wordCount,
+    ...(post.readingMinutes > 0 ? { timeRequired: `PT${post.readingMinutes}M` } : {}),
     isAccessibleForFree: true,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", ".article-excerpt", "#key-takeaways"],
+    },
     ...(sources.length
       ? { citation: sources.map((s) => ({ "@type": "CreativeWork", name: s.title, ...(s.url ? { url: s.url } : {}) })) }
       : {}),
@@ -182,6 +197,28 @@ export function collectionJsonLd(opts: { name: string; description: string; path
         position: i + 1,
         url: absoluteUrl(postPath(p)),
         name: p.title,
+      })),
+    },
+  };
+}
+
+export function linkListCollectionJsonLd(opts: { name: string; description: string; path: string; items: { path: string; name: string; description?: string }[] }) {
+  return {
+    "@type": "CollectionPage",
+    "@id": `${absoluteUrl(opts.path)}#page`,
+    url: absoluteUrl(opts.path),
+    name: opts.name,
+    description: opts.description,
+    isPartOf: { "@id": websiteId },
+    inLanguage: siteConfig.language,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: opts.items.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: absoluteUrl(item.path),
+        name: item.name,
+        ...(item.description ? { description: item.description } : {}),
       })),
     },
   };

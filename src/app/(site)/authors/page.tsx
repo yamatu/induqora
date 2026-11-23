@@ -4,13 +4,17 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { db } from "@/lib/db";
 import { publishedWhere } from "@/lib/posts";
-import { breadcrumbJsonLd, graph, pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, graph, pageMetadata, personJsonLd, websiteId } from "@/lib/seo";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const revalidate = 300;
 
+const description =
+  "Meet the engineers, analysts and editors who write for Induqora and the expertise they bring to industrial automation coverage.";
+
 export const metadata: Metadata = pageMetadata({
   title: "Authors and Editors",
-  description: "Meet the engineers, analysts and editors who write for Induqora and the expertise they bring to industrial automation coverage.",
+  description,
   path: "/authors",
 });
 
@@ -24,9 +28,30 @@ export default async function AuthorsPage() {
     { name: "Authors", path: "/authors" },
   ];
 
+  const ld = graph(
+    {
+      "@type": "CollectionPage",
+      "@id": `${absoluteUrl("/authors")}#page`,
+      url: absoluteUrl("/authors"),
+      name: "Authors and Editors",
+      description,
+      isPartOf: { "@id": websiteId },
+      inLanguage: siteConfig.language,
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: authors.map((a, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: personJsonLd(a),
+        })),
+      },
+    },
+    breadcrumbJsonLd(crumbs),
+  );
+
   return (
     <div className="container-page pt-8">
-      <JsonLd data={graph(breadcrumbJsonLd(crumbs))} />
+      <JsonLd data={ld} />
       <Breadcrumbs items={crumbs} />
       <header className="mt-6 mb-12 max-w-3xl">
         <h1 className="font-serif text-3xl font-bold text-ink sm:text-4xl">Authors and editors</h1>

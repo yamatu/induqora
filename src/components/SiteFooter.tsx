@@ -61,13 +61,21 @@ export async function SiteFooter() {
             A weekly email for controls engineers, OT security teams and plant leaders. No spam — unsubscribe anytime.
           </p>
           <NewsletterForm source="footer" dark />
-          <p className="mt-6 text-sm">
+          <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <a href="/rss.xml" className="hover:text-white">
               RSS feed
             </a>
-            <span className="mx-2 text-slate-600">·</span>
+            <span className="text-slate-600">·</span>
             <a href="/feed.json" className="hover:text-white">
               JSON Feed
+            </a>
+            <span className="text-slate-600">·</span>
+            <a href="/llms.txt" className="hover:text-white">
+              LLMs.txt
+            </a>
+            <span className="text-slate-600">·</span>
+            <a href="/sitemap.xml" className="hover:text-white">
+              Sitemap
             </a>
           </p>
         </div>

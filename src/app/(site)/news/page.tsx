@@ -9,7 +9,7 @@ export const revalidate = 300;
 
 const title = "Industrial Automation News";
 const description =
-  "Breaking news and analysis from the industrial automation and control sector: PLC and DCS launches, OT cybersecurity advisories, standards updates, industrial networking and market moves.";
+  "Industrial automation news and analysis: PLC and DCS launches, ICS/OT cybersecurity advisories, IEC/ISO standards updates, robotics and networking moves.";
 
 type Props = { searchParams: Promise<{ page?: string }> };
 

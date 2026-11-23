@@ -7,8 +7,8 @@ author: edword
 tags: Machinery Regulation, EU regulation, Machine safety, Functional safety
 publishedAt: 2026-11-17T08:00:00Z
 excerpt: With roughly two months to go, machine builders and integrators selling into the EU are preparing for Regulation (EU) 2023/1230, which replaces the Machinery Directive on January 20, 2027. The new rules add cybersecurity-related safety requirements, address AI-based safety functions and allow digital instructions.
-seoTitle: EU Machinery Regulation 2023/1230: What Changes in January 2027
-seoDescription: The EU Machinery Regulation replaces Directive 2006/42/EC on January 20, 2027. Key changes for machine builders: cybersecurity, AI safety functions, digital instructions.
+seoTitle: EU Machinery Regulation 2023/1230: Key Changes for 2027
+seoDescription: EU Machinery Regulation 2023/1230 replaces Directive 2006/42/EC on Jan 20, 2027, adding OT cybersecurity, AI safety rules and digital instructions.
 ---
 The **EU Machinery Regulation (EU) 2023/1230** applies from **January 20, 2027**, replacing the Machinery Directive 2006/42/EC that has governed machine safety in Europe since 2009. Machines placed on the EU market from that date must comply with the new regulation.
 
