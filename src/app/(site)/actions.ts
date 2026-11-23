@@ -20,7 +20,7 @@ async function rateLimited(bucket: string, limit: number, windowMs: number) {
   return recent.length > limit;
 }
 
-const emailSchema = z.string().trim().toLowerCase().email("Please enter a valid email address.").max(254);
+const emailSchema = z.string().trim().toLowerCase().max(254).pipe(z.email("Please enter a valid email address."));
 
 export async function subscribe(_prev: FormState, formData: FormData): Promise<FormState> {
   if (formData.get("website")) return { ok: true, message: "Thanks — you're subscribed." };

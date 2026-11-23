@@ -1,6 +1,6 @@
 # Induqora — induqora.com
 
-Industrial Automation & Control news and insights. Next.js 15 (App Router) · TypeScript · Prisma (SQLite by default) · Tailwind CSS v4.
+Industrial Automation & Control news and insights. Next.js 16 (App Router) · TypeScript · Prisma (SQLite by default) · Tailwind CSS v4.
 
 ## Quick start
 

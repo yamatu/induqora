@@ -2,12 +2,11 @@
   "name": "induqora",
   "version": "1.0.0",
   "private": true,
-  "description": "Induqora — Industrial Automation & Control news and insights",
+  "description": "Induqora \u2014 Industrial Automation & Control news and insights",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "db:push": "prisma db push",
     "db:seed": "node --env-file=.env prisma/seed.mjs",
@@ -20,11 +19,11 @@
     "bcryptjs": "^3.0.3",
     "jose": "^6.2.18",
     "marked": "^15.0.12",
-    "next": "^15.5.29",
+    "next": "^16.4.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sanitize-html": "^2.17.0",
-    "zod": "^3.25.0"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.0",
@@ -41,5 +40,13 @@
     "@prisma/client@6.19.3": true,
     "prisma@6.19.3": true,
     "@prisma/engines@6.19.3": true
+  },
+  "overrides": {
+    "effect": "^3.22.5",
+    "deepmerge-ts": "^8.0.2",
+    "postcss-selector-parser": "^6.1.6"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

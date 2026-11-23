@@ -6,7 +6,7 @@ import { db } from "./db";
 import { siteConfig } from "./site";
 import { EXT_MIME, UPLOAD_ROOT, resolveUpload } from "./uploads";
 
-export const BACKUP_DIR = path.resolve(process.env.BACKUP_DIR || "./backups");
+export const BACKUP_DIR = path.resolve(/*turbopackIgnore: true*/ process.env.BACKUP_DIR || "./backups");
 export const BACKUP_FORMAT = "induqora-backup";
 export const BACKUP_VERSION = 1;
 export const MAX_BACKUP_BYTES = 512 * 1024 * 1024;

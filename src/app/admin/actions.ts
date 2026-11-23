@@ -114,7 +114,7 @@ const postSchema = z.object({
   authorId: z.string().min(1, "Choose an author."),
   seoTitle: z.string().max(70, "SEO title should be 70 characters or fewer."),
   seoDescription: z.string().max(170, "Meta description should be 170 characters or fewer."),
-  canonicalUrl: z.union([z.literal(""), z.string().url("Canonical URL must be a full URL.")]),
+  canonicalUrl: z.union([z.literal(""), z.url({ protocol: /^https?$/, error: "Canonical URL must be a full http(s) URL." })]),
   coverImage: z.string().max(500),
   coverAlt: z.string().max(200),
   coverCaption: z.string().max(300),
@@ -269,7 +269,7 @@ export async function deleteTag(fd: FormData) {
 
 /* ---------- Authors ---------- */
 
-const urlOrEmpty = z.union([z.literal(""), z.string().url()]);
+const urlOrEmpty = z.union([z.literal(""), z.url({ protocol: /^https?$/ })]);
 
 export async function saveAuthor(_prev: ActionState, fd: FormData): Promise<ActionState> {
   await requireUser();
@@ -375,7 +375,7 @@ export async function createUser(_prev: ActionState, fd: FormData): Promise<Acti
   const name = str(fd, "name");
   const password = String(fd.get("password") ?? "");
   const role = str(fd, "role") === "ADMIN" ? "ADMIN" : "EDITOR";
-  if (!z.string().email().safeParse(email).success) return { ok: false, message: "Enter a valid email." };
+  if (!z.email().safeParse(email).success) return { ok: false, message: "Enter a valid email." };
   if (name.length < 2) return { ok: false, message: "Enter a name." };
   if (password.length < 12) return { ok: false, message: "Password must be at least 12 characters." };
   if (await db.adminUser.findUnique({ where: { email } })) return { ok: false, message: "A user with this email already exists." };

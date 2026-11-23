@@ -1,6 +1,6 @@
 import path from "node:path";
 
-export const UPLOAD_ROOT = path.resolve(process.env.UPLOAD_DIR || "./uploads");
+export const UPLOAD_ROOT = path.resolve(/*turbopackIgnore: true*/ process.env.UPLOAD_DIR || "./uploads");
 
 export const ALLOWED_MIME: Record<string, string> = {
   "image/jpeg": ".jpg",
