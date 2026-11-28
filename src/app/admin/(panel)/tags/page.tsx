@@ -5,6 +5,9 @@ import { ActionForm } from "../ActionForm";
 
 export const metadata = { title: "Tags" };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Props = { searchParams: Promise<{ edit?: string }> };
 
 export default async function TagsAdmin({ searchParams }: Props) {

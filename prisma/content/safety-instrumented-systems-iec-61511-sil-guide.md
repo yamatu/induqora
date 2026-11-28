@@ -3,12 +3,15 @@ title: Safety Instrumented Systems (SIS) and SIL Levels: An Engineer's Guide to 
 slug: safety-instrumented-systems-iec-61511-sil-guide
 type: BLOG
 category: process-automation-dcs
-author: edword
+author: edward
 tags: Functional safety, DCS, Process control, IEC 62443, OT security
 publishedAt: 2026-10-29T09:00:00Z
 excerpt: A Safety Instrumented System (SIS) protects process plants when basic control fails. Learn how IEC 61511 defines Safety Integrity Levels (SIL 1–4), PFDavg, voting architectures (1oo2 vs 2oo3), BPCS separation, proof testing and OT security boundaries.
 seoTitle: Safety Instrumented Systems (SIS) & SIL: IEC 61511 Guide
 seoDescription: Guide to Safety Instrumented Systems (SIS) under IEC 61511: SIL 1–4 PFDavg and RRF targets, 1oo2 vs 2oo3 voting, BPCS separation, proof testing and security.
+coverImage: /media/2026/11/cover-safety-instrumented-systems-iec-61511-sil-guide.jpg
+coverAlt: Safety Instrumented System architecture illustration showing independent sensors, safety logic solver, and final elements
+coverCaption: An IEC 61511 Safety Instrumented System operates independently of the BPCS to bring hazardous processes to a safe state on demand.
 ---
 In oil and gas, chemical, pharmaceutical and power plants, the **Basic Process Control System (BPCS)** — typically a [DCS or PLC](/blog/scada-vs-dcs-differences) — keeps temperatures, pressures and flows inside normal operating windows. When a runaway reaction, blocked outlet or utility failure pushes the process beyond safe bounds, a separate, higher-integrity protection layer must step in automatically to bring the plant to a safe state. That protection layer is the **Safety Instrumented System (SIS)**.
 
@@ -50,6 +53,8 @@ Achieving SIL 2 or SIL 3 is never just a spreadsheet `PFDavg` calculation. IEC 6
 ## Voting architectures: balancing safety against spurious trips
 
 Engineers use **MooN ("M out of N")** voting to balance two competing risks: **failing dangerously** (failing to trip during a real hazard) versus **spurious trips** (nuisance shutdowns caused by a single faulty sensor costing hundreds of thousands of dollars in lost production):
+
+![Two-part process safety diagram showing logarithmic SIL 1 to SIL 4 PFDavg and Risk Reduction Factor scale alongside 1oo1, 1oo2, 2oo2, and 2oo3 sensor voting trade-offs](/media/2026/11/diagram-safety-instrumented-systems-iec-61511-sil-guide.png "Figure 1: Each SIL step delivers a 10x increase in risk reduction; 2oo3 voting delivers both high safety integrity and resistance to spurious plant shutdowns.")
 
 | Voting | Description | Safety Integrity (PFD) | Spurious Trip Rate (Availability) | Typical Application |
 |---|---|---|---|---|

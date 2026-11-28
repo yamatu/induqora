@@ -3,12 +3,16 @@ title: Vibocnc Company Profile: CNC and Automation Spare Parts, Repair Service a
 slug: vibocnc-cnc-automation-parts-repair-service-china
 type: BLOG
 category: suppliers-services
-author: edword
+author: edward
 tags: CNC spare parts, Automation repair, FANUC, Siemens HMI, Mitsubishi FX
 publishedAt: 2026-11-22T10:00:00Z
+modifiedAt: 2026-11-24T06:00:00Z
 excerpt: Vibocnc is a Kunshan-based CNC parts center that sells and repairs servo drives, PLCs, HMIs, motors and control boards from FANUC, Siemens, Mitsubishi and 20+ other brands. This profile covers its catalog, example part numbers, repair process, warranty and shipping terms.
 seoTitle: Vibocnc Profile: CNC & Automation Parts and Repair, China
 seoDescription: Vibocnc supplies and repairs FANUC drives, Siemens HMIs, Mitsubishi FX PLCs and parts from 20+ brands. Catalog, repair process, 12-month warranty and shipping.
+coverImage: /media/2026/11/cover-vibocnc-cnc-automation-parts-repair-service-china.jpg
+coverAlt: Editorial profile illustration of multi-brand PLC, HMI, and CNC control board testing and repair operations at Vibocnc
+coverCaption: Independent company profile detailing Vibocnc's multi-brand spare-parts catalog, component-level repair intake, and international shipping.
 ---
 *Company profile. This article describes Vibocnc based on the information the company publishes on [vibocnc.com](https://vibocnc.com/), reviewed by Induqora in November 2026. Figures such as staff numbers and stock levels are the company's own statements and have not been independently audited.*
 
@@ -35,11 +39,11 @@ Where many spare-parts sellers stop at sourcing, Vibocnc's site is organized aro
 
 At the time of writing the catalog lists **more than 500,000 part numbers**. The largest product families are:
 
-- **FANUC servo amplifiers and drives** — over 2,000 listings in the [FANUC servo amplifier / drive category](https://vibocnc.com/en/categories/fanuc/fanuc-servo-amplifier-drive), covering current, legacy and obsolete CNC systems.
-- **Siemens operator panels and HMIs** — more than 8,000 listings in the [Siemens HMI category](https://vibocnc.com/en/categories/siemens/operator-panels-hmi).
-- **Mitsubishi FX-series PLCs** — around 1,500 listings in the [Mitsubishi FX category](https://vibocnc.com/en/categories/mitsubishi/fx-series), from FX0 and FX1S to FX2N and FX3U.
+- **FANUC servo amplifiers and drives** — over 2,000 listings in the [FANUC servo amplifier / drive category](https://vibocnc.com/categories/fanuc/fanuc-servo-amplifier-drive), covering current, legacy and obsolete CNC systems.
+- **Siemens operator panels and HMIs** — more than 8,000 listings in the [Siemens HMI category](https://vibocnc.com/categories/siemens/operator-panels-hmi).
+- **Mitsubishi FX-series PLCs** — around 1,500 listings in the [Mitsubishi FX category](https://vibocnc.com/categories/mitsubishi/fx-series), from FX0 and FX1S to FX2N and FX3U.
 - **Servo motors, drives and inverters** from Yaskawa, Omron, Allen-Bradley and ABB.
-- **Encoders and feedback devices**, including the [Tamagawa range](https://vibocnc.com/en/categories/tamagawa) of encoders and resolvers.
+- **Encoders and feedback devices**, including the [Tamagawa range](https://vibocnc.com/categories/tamagawa) of encoders and resolvers.
 - **Sensors and control components** from SICK, Schneider Electric and others.
 
 ### Example products
@@ -64,7 +68,9 @@ Some items show a fixed price; many surplus and obsolete parts are quoted on req
 
 ## The repair service
 
-Vibocnc runs repair as a separate, documented service through its [repair request page](https://vibocnc.com/en/repair-request). Equipment covered includes:
+Vibocnc runs repair as a separate, documented service through its [repair request page](https://vibocnc.com/repair-request). Equipment covered includes:
+
+![Four-stage industrial MRO workflow diagram showing Fault Intake & Visual Inspection, Component-Level Repair & Recapping, Load-Bench Functional Verification, and ESD Packaging with 12-Month Warranty Dispatch across FANUC, Siemens, Mitsubishi, ABB, and Schneider hardware](/media/2026/11/diagram-vibocnc-cnc-automation-parts-repair-service-china.png "Figure 1: Structured component-level repair and functional bench verification extend the service life of discontinued PLC, HMI, and CNC control boards.")
 
 - HMI panels and operator interfaces
 - Servo drives and amplifiers
@@ -97,16 +103,21 @@ The quality of the first diagnosis depends on the information supplied. Vibocnc 
 
 ## Warranty, returns and shipping
 
-- **Warranty:** standard coverage is **12 months** unless the quotation or product page states otherwise, covering verified functional defects under normal operating conditions. Exclusions include incorrect installation or wiring, physical or environmental damage (moisture, surge, overheating), unauthorized repair or modification, and failures elsewhere in the machine. Details are in the [warranty policy](https://vibocnc.com/en/warranty-policy).
+- **Warranty:** standard coverage is **12 months** unless the quotation or product page states otherwise, covering verified functional defects under normal operating conditions. Exclusions include incorrect installation or wiring, physical or environmental damage (moisture, surge, overheating), unauthorized repair or modification, and failures elsewhere in the machine. Details are in the [warranty policy](https://vibocnc.com/warranty-policy).
 - **Claims:** customers provide the order number, SKU, serial number, fault description and photos or video; return instructions are issued before anything is shipped back.
 - **Returns:** product pages state that returns are accepted within one year, with return shipping costs shared.
 - **Shipping:** DHL, FedEx or UPS, with typical transit of 4–5 days depending on destination and customs.
 - **Part verification:** before dispatch, Vibocnc checks interchangeability when customers send the machine builder, controller model, drive reference and alarm code.
 - **Payment:** PayPal is listed on the site.
 
-## Related storefront: Vcocnc
+## MRO engineering guides from Vibocnc
 
-Vibocnc and **Vcocnc** ([vcocncspare.com](https://www.vcocncspare.com/)) publish the same company background — Kunshan, 2007, a 3,500 sqm workshop — and overlapping product listings, so buyers can treat them as related storefronts of the same supply operation. Our [Vcocnc company profile](/blog/vcocnc-fanuc-spare-parts-repair-supplier-china) focuses on its FANUC specialization.
+Vibocnc also publishes practical MRO guides for engineers maintaining legacy control boards, Siemens HMIs, PLC networks, and integrated robot cells:
+
+- [Managing Obsolete PLC, HMI, and CNC Control Board Spares: Repair vs. Tested MRO Replacement](https://vibocnc.com/blog/obsolete-plc-hmi-cnc-control-board-mro-sourcing-repair-strategy)
+- [Replacing Aging Siemens Operator Panels and HMIs: Hardware Compatibility and ISA-101 Clarity](https://vibocnc.com/blog/siemens-hmi-panel-replacement-isa-101-alarm-visibility-guide)
+- [Troubleshooting PLC Scan-Cycle Watchdog Faults, Remote I/O Dropouts, and Industrial Ethernet Latency](https://vibocnc.com/blog/plc-scan-cycle-io-module-profinet-diagnostics-guide)
+- [Robot Cell Integration and MRO Spare Readiness](https://vibocnc.com/news/robot-cell-plc-fieldbus-spare-parts-readiness-2026)
 
 ## Who Vibocnc suits
 
@@ -141,6 +152,7 @@ A: Vibocnc ships worldwide by DHL, FedEx or UPS. Transit typically takes 4–5 d
 
 === sources
 Vibocnc — homepage | https://vibocnc.com/
-Vibocnc — Repair request and process | https://vibocnc.com/en/repair-request
-Vibocnc — Warranty policy | https://vibocnc.com/en/warranty-policy
-Vibocnc — FANUC servo amplifier / drive category | https://vibocnc.com/en/categories/fanuc/fanuc-servo-amplifier-drive
+Vibocnc — Repair request and process | https://vibocnc.com/repair-request
+Vibocnc — Warranty policy | https://vibocnc.com/warranty-policy
+Vibocnc — FANUC servo amplifier / drive category | https://vibocnc.com/categories/fanuc/fanuc-servo-amplifier-drive
+Vibocnc — Obsolete PLC, HMI & CNC Control Board MRO Strategy | https://vibocnc.com/blog/obsolete-plc-hmi-cnc-control-board-mro-sourcing-repair-strategy

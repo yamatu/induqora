@@ -3,12 +3,15 @@ title: PID Controller Tuning: A Practical Guide for Process and Controls Enginee
 slug: pid-controller-tuning-practical-guide
 type: BLOG
 category: process-automation-dcs
-author: edword
+author: edward
 tags: PID control, Loop tuning, Process control
 publishedAt: 2026-10-21T09:00:00Z
 excerpt: Most control loops in industry are PID loops, and many of them are poorly tuned. This guide explains what proportional, integral and derivative action actually do, compares Ziegler–Nichols and lambda tuning, and covers the practical details — derivative filtering, anti-windup and valve problems — that decide whether a loop works in the field.
 seoTitle: PID Tuning Guide: Methods, Rules and Practical Tips
 seoDescription: Learn how P, I and D action work, how to tune PID loops with Ziegler–Nichols and lambda methods, and how to fix windup, noise and valve stiction.
+coverImage: /media/2026/11/cover-pid-controller-tuning-practical-guide.jpg
+coverAlt: Process control oscilloscope illustration showing proportional, integral, and derivative step-response curves
+coverCaption: Matching PID gains to dead time and process lag eliminates oscillation, valve wear, and sluggish setpoint recovery.
 ---
 The proportional-integral-derivative (PID) controller is the workhorse of industrial automation. It regulates flow, pressure, temperature, level, speed and position in nearly every plant. Yet surveys of industrial control loops have repeatedly found that a large share of them perform poorly — oscillating, responding sluggishly or running in manual. The cause is rarely the algorithm itself; it is tuning and the process equipment around it.
 
@@ -17,6 +20,8 @@ This guide focuses on what works in practice.
 ## What P, I and D each do
 
 A PID controller calculates its output from the **error** — the difference between setpoint (SP) and process variable (PV).
+
+![Mathematically plotted engineering graph comparing four closed-loop controller step responses: Underdamped oscillating, Optimal tuned PID, Overdamped sluggish, and P-only with steady-state offset](/media/2026/11/diagram-pid-controller-tuning-practical-guide.png "Figure 1: Well-tuned industrial loops favor smooth Lambda-style settling over aggressive overshoot, minimizing actuator wear and downstream process disturbances.")
 
 - **Proportional (P)** produces an output proportional to the current error. Higher gain responds more aggressively, but P action alone usually leaves a steady-state **offset**, and too much gain causes oscillation.
 - **Integral (I)** accumulates error over time and keeps adjusting the output until the error is zero. It eliminates offset, but too much integral action causes overshoot and slow oscillation.

@@ -3,7 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { cache } from "react";
 import { ArticleView, articleBreadcrumbs } from "@/components/ArticleView";
 import { JsonLd } from "@/components/JsonLd";
-import { renderMarkdown } from "./markdown";
+import { hasCommercialLinks, renderMarkdown } from "./markdown";
 import { getAdjacentPosts, getPublishedPost, getRelatedPosts } from "./posts";
 import { articleJsonLd, breadcrumbJsonLd, effectiveModifiedDate, faqJsonLd, feedAlternates, graph, ogImagePath, pageMetadata } from "./seo";
 import { absoluteUrl, postPath, siteConfig } from "./site";
@@ -64,7 +64,7 @@ export async function ArticlePage({ slug, type }: { slug: string; type: string }
   return (
     <>
       <JsonLd data={ld} />
-      <ArticleView post={post} html={html} toc={toc} related={related} adjacent={adjacent} />
+      <ArticleView post={post} html={html} toc={toc} related={related} adjacent={adjacent} commercialLinks={hasCommercialLinks(post.content)} />
     </>
   );
 }

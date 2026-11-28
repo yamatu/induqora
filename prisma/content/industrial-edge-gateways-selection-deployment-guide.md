@@ -3,12 +3,15 @@ title: Industrial Edge Gateways: Protocol Conversion, Store-and-Forward Bufferin
 slug: industrial-edge-gateways-selection-deployment-guide
 type: BLOG
 category: iiot-edge
-author: edword
+author: edward
 tags: Edge computing, IIoT, OPC UA, MQTT, Modbus TCP, OT security, Cyber Resilience Act
 publishedAt: 2026-10-31T09:00:00Z
 excerpt: Connecting brownfield PLCs, CNCs and sensors to a Unified Namespace or cloud platform requires more than a cheap serial-to-Ethernet adapter. Learn how to evaluate industrial edge gateways on protocol drivers, store-and-forward buffering, hardware isolation and CRA security lifecycle.
 seoTitle: Industrial Edge Gateways: Selection & Security Guide
 seoDescription: How to select and deploy industrial edge gateways for brownfield PLCs: southbound protocol drivers, store-and-forward buffering, dual NICs and CRA security.
+coverImage: /media/2026/11/cover-industrial-edge-gateways-selection-deployment-guide.jpg
+coverAlt: Industrial DIN-rail edge gateway graphic showing OT protocol ingestion, local encrypted disk buffering, and secure cloud uplink
+coverCaption: Production-grade edge gateways decouple sensitive OT networks from IT clouds with local buffering and hardware-rooted security.
 ---
 Most factory automation assets were built to run reliably for twenty years, not to speak TLS 1.3 or publish JSON payloads to an enterprise data platform. A typical brownfield shop floor mixes Siemens S7-300 and S7-1500 PLCs, Allen-Bradley CompactLogix controllers, Mitsubishi FX/Q units, FANUC CNCs using FOCAS, Modbus RTU power meters and analog legacy presses that have no network port at all.
 
@@ -23,6 +26,8 @@ An **industrial edge gateway** sits directly between those heterogeneous shop-fl
 | **Industrial PC (IPC) / Edge Server** | High-throughput local compute: machine vision, local historians, AI inference, multi-line UNS brokers | Linux / Windows IoT Enterprise / hypervisor | Multi-core CPU/GPU power, large NVMe RAID storage, hosts multiple containers/VMs | Higher cost, cabinet space, thermal load and IT-style OS lifecycle maintenance |
 
 ## Core technical capabilities to verify before buying
+
+![Pipeline diagram showing southbound PLC protocols (OPC UA, Modbus, S7, EtherNet/IP) entering a dual-NIC industrial edge gateway for normalization, local encrypted store-and-forward ring buffering, and mutual-TLS MQTT publishing to MES/Cloud](/media/2026/11/diagram-industrial-edge-gateways-selection-deployment-guide.png "Figure 1: Dual physical NICs, non-volatile store-and-forward queues, and outbound-only TLS keep plant data intact across WAN dropouts without exposing PLCs.")
 
 ### 1. Native southbound protocol coverage and poll-load protection
 
@@ -49,7 +54,7 @@ Check these four store-and-forward details in the datasheet:
 
 ### 4. Physical network separation (dual independent NICs)
 
-Always choose an edge gateway with **at least two physically separate Ethernet interfaces** (plus isolated RS-485/CAN ports if reading serial devices):
+Always choose an edge gateway with **at least two physically separate Ethernet interfaces** (plus isolated RS-485/CAN ports if reading serial devices). If the southbound side is CANopen rather than raw CAN, the PDO mapping and bus-load arithmetic in [CANopen CiA 301 from Rust](/blog/rust-socketcan-canopen-cia301-pdo-sdo-guide) decides whether your cycle time is achievable at all:
 
 - **NIC 1 (OT Southbound):** Connected to the machine/cell PLC VLAN, with **IP forwarding strictly disabled** in the Linux kernel (`net.ipv4.ip_forward = 0`).
 - **NIC 2 (IIoT / IDMZ Northbound):** Connected to the segmented IIoT or IDMZ VLAN, initiating **outbound-only TLS connections** to the central broker or historian.

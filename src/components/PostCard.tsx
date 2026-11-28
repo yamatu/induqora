@@ -1,7 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { PostCardData } from "@/lib/posts";
 import { POST_TYPES, postPath, type PostType } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
+
+// Covers are 1200x675 JPEGs served from /media. next/image turns them into sized srcset
+// entries (WebP/AVIF) so a card only downloads what its slot actually needs.
+const CARD_SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
+const FEATURE_SIZES = "(min-width: 1024px) 66vw, 100vw";
 
 function Meta({ post }: { post: PostCardData }) {
   return (
@@ -31,8 +37,14 @@ export function PostCard({ post, headingLevel = 3 }: { post: PostCardData; headi
     <article className="group flex flex-col">
       {post.coverImage && (
         <Link href={postPath(post)} tabIndex={-1} aria-hidden="true" className="mb-4 block overflow-hidden rounded-lg bg-paper">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={post.coverImage} alt="" loading="lazy" decoding="async" width={640} height={360} className="aspect-video w-full object-cover transition-transform group-hover:scale-[1.02]" />
+          <Image
+            src={post.coverImage}
+            alt=""
+            width={640}
+            height={360}
+            sizes={CARD_SIZES}
+            className="aspect-video w-full object-cover transition-transform group-hover:scale-[1.02]"
+          />
         </Link>
       )}
       <Kicker post={post} />
@@ -52,8 +64,15 @@ export function PostCardFeature({ post }: { post: PostCardData }) {
     <article className="relative flex h-full flex-col justify-end overflow-hidden rounded-xl bg-ink p-6 text-white sm:p-8">
       {post.coverImage ? (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={post.coverImage} alt="" decoding="async" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover opacity-40" />
+          <Image
+            src={post.coverImage}
+            alt=""
+            fill
+            sizes={FEATURE_SIZES}
+            loading="eager"
+            fetchPriority="high"
+            className="object-cover opacity-40"
+          />
         </>
       ) : (
         <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(11,92,173,0.55),transparent_55%),radial-gradient(circle_at_10%_90%,rgba(245,158,11,0.25),transparent_45%)]" />

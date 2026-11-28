@@ -3,12 +3,15 @@ title: Modbus RTU vs Modbus TCP: Architecture, Addressing, Limitations and Migra
 slug: modbus-rtu-vs-modbus-tcp-industrial-guide
 type: BLOG
 category: industrial-networking
-author: edword
+author: edward
 tags: Modbus TCP, Industrial Ethernet, OPC UA, PROFINET, OT security
 publishedAt: 2026-10-15T09:00:00Z
 excerpt: Nearly fifty years after its invention, Modbus remains everywhere on the factory floor — on power meters, VFDs, temperature controllers and gateways. Compare Modbus RTU over RS-485 and Modbus TCP over Ethernet, fix classic addressing and byte-order traps, and know when to migrate.
 seoTitle: Modbus RTU vs Modbus TCP: Addressing, Limits & Security
 seoDescription: Compare Modbus RTU (RS-485) and Modbus TCP (port 502): framing, 0-based vs 1-based addressing, 32-bit float byte order, security gaps and migration tips.
+coverImage: /media/2026/11/cover-modbus-rtu-vs-modbus-tcp-industrial-guide.jpg
+coverAlt: Technical graphic contrasting RS-485 serial Modbus RTU framing with Ethernet TCP/IP Modbus TCP MBAP packet structure
+coverCaption: Modbus remains ubiquitous on plant floors, but engineers must manage byte-order traps and add external security wrappers.
 ---
 First published by Modicon in **1979**, **Modbus** has outlived almost every competing fieldbus of its era. Walk into a modern plant running cutting-edge [PROFINET, EtherNet/IP or EtherCAT](/blog/profinet-vs-ethernet-ip-vs-ethercat) on its primary production lines, and you will still find Modbus everywhere around the edges: sub-metering power analyzers, VFDs, chillers, boiler controllers, level transmitters and legacy PLC skids.
 
@@ -32,6 +35,8 @@ Both variants share the exact same **Protocol Data Unit (PDU)** — a 1-byte **F
 ## The four Modbus data tables and function codes
 
 Every Modbus server exposes data through four conceptual address areas (though some devices overlap coils/registers internally):
+
+![Protocol packet anatomy diagram contrasting Modbus RTU (Address, Function Code, Data, CRC-16) against Modbus TCP (7-byte MBAP header plus PDU) and summarizing the four register tables (Coils, Discrete Inputs, Input Registers, Holding Registers)](/media/2026/11/diagram-modbus-rtu-vs-modbus-tcp-industrial-guide.png "Figure 1: Modbus TCP replaces serial address and CRC-16 bytes with a 7-byte MBAP header over TCP/IP while preserving the exact same four register address tables.")
 
 | Table Name | Object Type | Access | Common "Modicon" Reference | Core Function Codes |
 |---|---|---|---|---|
@@ -84,7 +89,7 @@ If you must keep Modbus TCP running on your plant floor:
 
 ## When to keep Modbus — and when to migrate
 
-**Keep Modbus** for low-speed auxiliary monitoring (sub-meters, chillers, HVAC, simple VFDs) behind a local [edge gateway](/blog/industrial-edge-gateways-selection-deployment-guide) that converts Modbus into authenticated **OPC UA** or **MQTT/Sparkplug** northbound — see [OPC UA vs MQTT](/blog/opc-ua-vs-mqtt).
+**Keep Modbus** for low-speed auxiliary monitoring (sub-meters, chillers, HVAC, simple VFDs) behind a local [edge gateway](/blog/industrial-edge-gateways-selection-deployment-guide) that converts Modbus into authenticated **OPC UA** or **MQTT/Sparkplug** northbound — see [OPC UA vs MQTT](/blog/opc-ua-vs-mqtt). If you are writing that gateway yourself, the half-duplex and word-order traps are covered in [Rust async Modbus gateways](/blog/rust-modbus-tokio-async-rs485-gateway-guide).
 
 **Migrate away from Modbus** when you need:
 

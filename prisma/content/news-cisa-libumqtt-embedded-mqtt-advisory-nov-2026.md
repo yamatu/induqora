@@ -3,12 +3,15 @@ title: CISA Flags Unpatched Integer Underflow in Embedded MQTT Library libumqtt 
 slug: cisa-libumqtt-embedded-mqtt-integer-underflow-cve-2026-125132
 type: NEWS
 category: iiot-edge
-author: edword
+author: edward
 tags: MQTT, IIoT, Edge computing, OT security, CISA advisories, Cyber Resilience Act
 publishedAt: 2026-11-23T05:30:00Z
 excerpt: CISA advisory ICSA-26-323-03 highlights CVE-2026-125132, an unpatched integer underflow in the lightweight C library libumqtt (<=1.1.1) used in embedded Linux gateways and IIoT devices — underscoring why SBOM tracking and broker isolation matter.
 seoTitle: CISA Warns of Unpatched libumqtt Flaw (CVE-2026-125132)
 seoDescription: CISA ICSA-26-323-03 discloses an unpatched integer underflow (CVE-2026-125132) in libumqtt <=1.1.1 affecting embedded IIoT gateways, plus SBOM mitigations.
+coverImage: /media/2026/11/cover-cisa-libumqtt-embedded-mqtt-integer-underflow-cve-2026-125132.jpg
+coverAlt: OT cybersecurity advisory graphic highlighting CVE-2026-125132 in embedded MQTT client library libumqtt
+coverCaption: With no upstream patch available for libumqtt <=1.1.1, SBOM visibility and strict MQTT broker isolation are essential.
 ---
 On **November 19, 2026**, CISA published ICS Advisory **ICSA-26-323-03** covering **CVE-2026-125132**, a remotely exploitable **integer underflow (CWE-191)** in **libumqtt** versions **1.1.1 and earlier** — a lightweight, OpenWrt-oriented C MQTT client library embedded in Linux-based cellular routers, telemetry nodes and compact IIoT edge gateways.
 
@@ -25,6 +28,8 @@ Because CISA noted that the upstream repository maintainers **did not respond to
 | **CVSS v3.1 Vector** | `AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:H` (Network-exploitable, low complexity, no authentication, high availability impact) |
 | **Patch Status** | **No upstream fix available** (maintainer unresponsive during CISA disclosure) |
 | **Impacted Sectors** | Critical Manufacturing, Energy, Transportation Systems, Water and Wastewater, IT |
+
+![Security architecture diagram detailing CVE-2026-125132 attack path from crafted MQTT frame to libumqtt CWE-191 integer underflow on edge gateways alongside four compensating controls including SBOM audit and broker TLS isolation](/media/2026/11/diagram-cisa-libumqtt-embedded-mqtt-integer-underflow-cve-2026-125132.png "Figure 1: Because upstream libumqtt maintainers did not issue a patch, defenders must verify firmware SBOMs and restrict devices to authenticated internal brokers.")
 
 Successful exploitation of the integer underflow allows a remote attacker able to send crafted MQTT packets to trigger **denial of service (crash/hang), memory corruption or information disclosure** on the embedded client device. On resource-constrained OpenWrt or Yocto Linux field gateways running without full memory-safety mitigations, malformed broker responses or spoofed network traffic can knock telemetry gateways offline or corrupt in-memory state.
 

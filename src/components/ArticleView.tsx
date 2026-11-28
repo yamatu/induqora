@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Author, Category, Post, Tag } from "@prisma/client";
 import type { PostCardData } from "@/lib/posts";
@@ -69,6 +70,7 @@ export function ArticleView({
   related,
   adjacent,
   preview = false,
+  commercialLinks = false,
 }: {
   post: FullPost;
   html: string;
@@ -76,6 +78,7 @@ export function ArticleView({
   related: PostCardData[];
   adjacent: { prev: Adjacent; next: Adjacent };
   preview?: boolean;
+  commercialLinks?: boolean;
 }) {
   const takeaways = parseLines(post.keyTakeaways);
   const faqs = parseJsonArray<Faq>(post.faqs).filter((f) => f.q && f.a);
@@ -143,8 +146,16 @@ export function ArticleView({
 
         {post.coverImage && (
           <figure className="mt-8">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={post.coverImage} alt={post.coverAlt || post.title} width={1200} height={675} fetchPriority="high" className="aspect-video w-full rounded-lg object-cover" />
+            <Image
+              src={post.coverImage}
+              alt={post.coverAlt || post.title}
+              width={1200}
+              height={675}
+              sizes="(min-width: 1024px) 768px, 100vw"
+              loading="eager"
+              fetchPriority="high"
+              className="aspect-video w-full rounded-lg object-cover"
+            />
             {post.coverCaption && <figcaption className="mt-2 text-center text-sm text-muted">{post.coverCaption}</figcaption>}
           </figure>
         )}
@@ -165,6 +176,17 @@ export function ArticleView({
 
       <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
         <div className="mx-auto w-full max-w-3xl min-w-0 lg:mr-0">
+          {commercialLinks && (
+            <p className="mb-8 rounded-md border-l-4 border-accent bg-paper px-4 py-3 text-sm leading-6 text-steel">
+              <strong className="font-semibold text-ink">Supplier mention.</strong> This article references commercial
+              suppliers by name. Links to their sites are provided for reference and are marked{" "}
+              <code className="text-xs">nofollow</code>; they are not an independent endorsement. See our{" "}
+              <Link href="/editorial-policy" className="text-brand hover:underline">
+                editorial policy
+              </Link>
+              .
+            </p>
+          )}
           <div className="article-body prose prose-lg prose-slate max-w-none prose-headings:font-semibold prose-a:text-brand prose-pre:bg-slate-900" dangerouslySetInnerHTML={{ __html: html }} />
 
           {faqs.length > 0 && (

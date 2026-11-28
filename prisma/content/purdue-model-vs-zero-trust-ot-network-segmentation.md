@@ -3,12 +3,15 @@ title: Purdue Model vs Zero Trust in OT Networks: Practical Segmentation for Mod
 slug: purdue-model-vs-zero-trust-ot-network-segmentation
 type: BLOG
 category: ot-cybersecurity
-author: edword
+author: edward
 tags: OT security, ICS security, IEC 62443, Zones and Conduits, IIoT, Edge computing
 publishedAt: 2026-10-25T09:00:00Z
 excerpt: Has IIoT killed the Purdue Model, or can Zero Trust replace firewalls on the plant floor? Learn how Purdue levels, IEC 62443 zones and conduits, industrial DMZs and Zero Trust identity controls combine into a realistic OT defense architecture.
 seoTitle: Purdue Model vs Zero Trust in OT Security: Practical Guide
 seoDescription: Compare the Purdue Model and Zero Trust in OT cybersecurity: combine Level 0–5 IDMZ boundaries, IEC 62443 cell zones and identity-aware vendor remote access.
+coverImage: /media/2026/11/cover-purdue-model-vs-zero-trust-ot-network-segmentation.jpg
+coverAlt: Network segmentation diagram illustrating Purdue Model Levels 0 through 5 integrated with Zero Trust zone policy boundaries
+coverCaption: Modern OT security keeps Purdue's vertical hierarchy and IDMZ while adding Zero Trust identity and least-privilege conduits.
 ---
 Every few years, a security conference slide declares that **"the Purdue Model is dead"** and must be replaced immediately by **Zero Trust**. Controls engineers look at twenty-year-old PLCs that cannot run TLS certificates — let alone an endpoint identity agent — and quietly ignore the slide deck.
 
@@ -52,6 +55,8 @@ Zero Trust (formalized in **NIST SP 800-207**) rests on three principles: **veri
 ## Combining both: IEC 62443 Zones and Conduits + Zero Trust Controls
 
 Rather than debating Purdue vs Zero Trust as mutually exclusive religions, high-maturity industrial security teams map them together using [IEC 62443-3-2 zones and conduits](/blog/iec-62443-explained):
+
+![Layered OT network diagram showing Enterprise Level 4-5, Industrial DMZ with MFA jump hosts and brokers, Manufacturing Operations Level 3, Supervisory Level 2, Control Level 1, and Field Level 0 separated by strict firewall conduits](/media/2026/11/diagram-purdue-model-vs-zero-trust-ot-network-segmentation.png "Figure 1: Never allow direct IT-to-PLC sessions; terminate all IT/OT traffic in the Industrial DMZ and enforce least-privilege policies between production cells.")
 
 ### 1. Keep the IDMZ (Purdue Level 3.5) as your north-south choke point
 

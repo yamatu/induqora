@@ -3,12 +3,15 @@ title: IEC 61131-3 Programming Languages Explained: Ladder, FBD, Structured Text
 slug: iec-61131-3-programming-languages-explained
 type: BLOG
 category: plc-controllers
-author: edword
+author: edward
 tags: IEC 61131-3, PLC programming, Structured Text, Ladder Logic
 publishedAt: 2026-09-02T09:00:00Z
 excerpt: IEC 61131-3 defines the standard PLC programming languages used by almost every major controller platform. Here is what each language is good at, where it falls short, and how to choose between them on a real project.
 seoTitle: IEC 61131-3 PLC Programming Languages Explained
 seoDescription: A practical guide to the IEC 61131-3 PLC languages — Ladder Diagram, Function Block Diagram, Structured Text, SFC and Instruction List — and when to use each.
+coverImage: /media/2026/11/cover-iec-61131-3-programming-languages-explained.jpg
+coverAlt: Engineering graphic depicting the IEC 61131-3 PLC programming languages: Ladder Diagram, Function Block Diagram, Structured Text, and Sequential Function Chart
+coverCaption: Modern PLC engineering mixes IEC 61131-3 languages by task: Ladder for interlocks, FBD for continuous loops, ST for math, and SFC for machine states.
 ---
 IEC 61131-3 is the international standard that defines the programming languages and software model for programmable logic controllers (PLCs). First published in 1993 and revised in 2003 and 2013, it is the reason a controls engineer trained on one vendor's platform can read code written on another. Most major controller platforms — including CODESYS-based systems, Siemens TIA Portal, Rockwell Studio 5000, Beckhoff TwinCAT, Schneider EcoStruxure and B&R Automation Studio — implement it, though each with its own extensions and naming.
 
@@ -114,6 +117,8 @@ Instruction List is a low-level, assembler-like textual language. It was depreca
 | Math, data handling, algorithms, parsing | Structured Text |
 | Batch phases and machine sequences | Sequential Function Chart |
 | Reusable library function blocks | Structured Text (called from any language) |
+
+![Four-quadrant engineering reference showing visual examples of Ladder Diagram rungs, Function Block Diagram PID wiring, Structured Text loop code, and Sequential Function Chart steps with recommended use cases](/media/2026/11/diagram-iec-61131-3-programming-languages-explained.png "Figure 1: Multi-language PLC projects combine LD, FBD, ST, and SFC inside reusable Program Organization Units (POUs) rather than forcing one language everywhere.")
 
 Three principles matter more than the choice of language:
 

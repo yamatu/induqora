@@ -3,12 +3,15 @@ title: Safe Torque Off (STO), SS1 and SLS Explained: Drive-Integrated Safety Und
 slug: safe-torque-off-sto-functional-safety-drives-iec-61800-5-2
 type: BLOG
 category: motion-control-drives
-author: edword
+author: edward
 tags: Functional safety, Machine safety, Servo drives, VFDs, Motion control, PROFINET, EtherCAT
 publishedAt: 2026-10-18T09:00:00Z
 excerpt: Drive-integrated safety functions defined in IEC 61800-5-2 let VFDs and servo drives replace bulky dual safety contactors, cut restart times and allow safe low-speed maintenance. Learn how STO, SS1, SS2, SOS and SLS work — and where STO alone is not enough.
 seoTitle: Safe Torque Off (STO), SS1 & SLS Explained (IEC 61800-5-2)
 seoDescription: Engineering guide to IEC 61800-5-2 drive safety: STO, SS1, SS2, SOS, SLS and SBC, dual-channel wiring vs PROFIsafe/CIP Safety/FSoE, and vertical-load traps.
+coverImage: /media/2026/11/cover-safe-torque-off-sto-functional-safety-drives-iec-61800-5-2.jpg
+coverAlt: Technical schematic of dual-channel Safe Torque Off gate-driver cutoff inside an industrial servo drive
+coverCaption: Drive-integrated safety functions eliminate electromechanical main contactors while achieving SIL 3 / PL e stopping performance.
 ---
 Twenty years ago, making a motor safe when an operator opened a guard door meant wiring **two oversized electromechanical safety contactors in series** between the mains supply and the VFD or servo drive. Every emergency stop or guard opening slammed the contactors open, dumped the DC bus capacitors, triggered inrush currents on restart, wore out contactor contacts and forced multi-second drive reboot delays before production could resume.
 
@@ -33,6 +36,8 @@ Instead of interrupting high-current mains power upstream of the drive, STO acts
 ## Core IEC 61800-5-2 drive safety functions compared
 
 Beyond basic STO, modern servo drives and advanced VFDs offer certified stopping, standstill and motion-monitoring functions:
+
+![Three-panel velocity versus time diagram comparing Safe Torque Off coast-to-stop, Safe Stop 1 controlled ramp before torque cutoff, and Safely-Limited Speed ceiling monitoring](/media/2026/11/diagram-safe-torque-off-sto-functional-safety-drives-iec-61800-5-2.png "Figure 1: STO removes motor torque immediately (uncontrolled coast), SS1 brakes under drive control before engaging STO, and SLS enforces a safe speed envelope during setup.")
 
 | Function | Full Name | IEC 60204-1 Stop Cat. | What It Does | Typical Machine Use Case |
 |---|---|---|---|---|
@@ -70,6 +75,8 @@ Before signing off a safety function using [ISO 13849-1 or IEC 62061](/blog/func
 4. **Verify vertical-axis brake timing:** Confirm `SBC` engages the mechanical brake *before* `STO` releases motor holding torque so a heavy vertical head never drops a few millimeters on every E-stop.
 5. **Archive the drive safety checksum report** (such as Siemens Safety Acceptance Test log or Rockwell Safety Signature) in the machine's permanent technical file.
 
+When swapping a replacement CNC servo amplifier in the field and troubleshooting persistent Not-Ready states, EDM feedback faults, or missing factory bypass plugs, consult Vcocnc's practical [Safe Torque Off (STO) CNC servo drive wiring and replacement checklist](https://www.vcocncspare.com/news/safe-torque-off-sto-cnc-servo-drive-wiring-replacement-checklist).
+
 === takeaways
 IEC 61800-5-2 defines drive-integrated functional safety functions — led by Safe Torque Off (STO), Safe Stop 1/2 (SS1/SS2), Safe Operating Stop (SOS), Safely Limited Speed (SLS) and Safe Brake Control (SBC).
 STO removes switching energy from the drive's IGBT gate circuits via redundant channels to achieve up to SIL 3 / PL e without bulky series mains contactors, keeping diagnostics online for rapid restart.
@@ -95,3 +102,4 @@ IEC 61800-5-2: Adjustable speed electrical power drive systems — Part 5-2: Saf
 IEC 60204-1: Safety of machinery — Electrical equipment of machines — Part 1: General requirements
 ISO 13849-1:2023: Safety of machinery — Safety-related parts of control systems | https://www.iso.org/standard/73481.html
 Regulation (EU) 2023/1230 on Machinery, Official Journal of the European Union | https://eur-lex.europa.eu/eli/reg/2023/1230/oj
+Vcocnc — Safe Torque Off (STO) on CNC Servo Drives: Wiring Verification and Replacement Checklist | https://www.vcocncspare.com/news/safe-torque-off-sto-cnc-servo-drive-wiring-replacement-checklist

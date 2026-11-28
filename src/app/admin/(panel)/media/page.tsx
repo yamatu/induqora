@@ -4,6 +4,9 @@ import { ActionForm } from "../ActionForm";
 
 export const metadata = { title: "Media library" };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function MediaAdmin() {
   const media = await db.media.findMany({ orderBy: { createdAt: "desc" }, take: 200 });
 

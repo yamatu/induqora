@@ -3,12 +3,15 @@ title: IEC 62443 Explained: A Practical Guide to Industrial Cybersecurity Standa
 slug: iec-62443-explained
 type: BLOG
 category: ot-cybersecurity
-author: edword
+author: edward
 tags: IEC 62443, OT security, ICS security, Zones and Conduits
 publishedAt: 2026-09-23T09:00:00Z
 excerpt: IEC 62443 is the leading international standard series for securing industrial automation and control systems. This guide explains how the series is organized, what security levels and foundational requirements mean, and how asset owners, integrators and product suppliers each apply it.
 seoTitle: IEC 62443 Explained: Industrial Cybersecurity Guide
 seoDescription: Understand the IEC 62443 series: its structure, roles, zones and conduits, the seven foundational requirements, security levels SL 1–4 and how to get started.
+coverImage: /media/2026/11/cover-iec-62443-explained.jpg
+coverAlt: Layered industrial cybersecurity shield graphic representing IEC 62443 zones, conduits, and security levels
+coverCaption: IEC 62443 divides industrial cybersecurity responsibility across asset owners, system integrators, and product manufacturers.
 ---
 **IEC 62443** is a series of international standards for the cybersecurity of industrial automation and control systems (IACS). Developed by the ISA99 committee and published jointly by ISA and the IEC, it is the reference framework for OT security in manufacturing, process industries, energy, water and building automation. It is increasingly referenced by regulation and procurement requirements.
 
@@ -45,6 +48,8 @@ Part 3-2 describes how to partition a system, assess the risk of each zone, and 
 ## Security levels (SL 1–4)
 
 Security levels describe the type of threat a zone, system or component must withstand:
+
+![Structured diagram of the four IEC 62443 series groups (General, Asset Owner 2-x, System Integrator 3-x, Product Supplier 4-x) paired with Security Levels SL 1 through SL 4 threat profiles](/media/2026/11/diagram-iec-62443-explained.png "Figure 1: Achieving plant resilience requires aligning component security (4-2), system architecture (3-3), and operational governance (2-1) to target Security Levels.")
 
 | Level | Protection against |
 |---|---|

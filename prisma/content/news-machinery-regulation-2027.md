@@ -3,18 +3,23 @@ title: EU Machinery Regulation Applies From January 20, 2027: What Changes for M
 slug: eu-machinery-regulation-2023-1230-january-2027
 type: NEWS
 category: standards-regulation
-author: edword
+author: edward
 tags: Machinery Regulation, EU regulation, Machine safety, Functional safety
 publishedAt: 2026-11-17T08:00:00Z
 excerpt: With roughly two months to go, machine builders and integrators selling into the EU are preparing for Regulation (EU) 2023/1230, which replaces the Machinery Directive on January 20, 2027. The new rules add cybersecurity-related safety requirements, address AI-based safety functions and allow digital instructions.
 seoTitle: EU Machinery Regulation 2023/1230: Key Changes for 2027
 seoDescription: EU Machinery Regulation 2023/1230 replaces Directive 2006/42/EC on Jan 20, 2027, adding OT cybersecurity, AI safety rules and digital instructions.
+coverImage: /media/2026/11/cover-eu-machinery-regulation-2023-1230-january-2027.jpg
+coverAlt: EU Machinery Regulation 2023/1230 editorial illustration comparing new cybersecurity, AI safety, and digital manual rules for 2027
+coverCaption: Regulation (EU) 2023/1230 takes direct effect across all EU member states on January 20, 2027, making cybersecurity part of machine safety.
 ---
 The **EU Machinery Regulation (EU) 2023/1230** applies from **January 20, 2027**, replacing the Machinery Directive 2006/42/EC that has governed machine safety in Europe since 2009. Machines placed on the EU market from that date must comply with the new regulation.
 
 Because it is a **regulation** rather than a directive, it applies directly in all member states without national transposition — removing differences in how countries implemented the old directive.
 
 ## The main changes
+
+![Structured five-pillar comparison chart contrasting Machinery Directive 2006/42/EC with Regulation (EU) 2023/1230 across Protection Against Corruption (cybersecurity), Self-Evolving AI Safety Assessment, Digital Instructions, Substantial Modification liability, and Direct EU-wide Regulation](/media/2026/11/diagram-eu-machinery-regulation-2023-1230-january-2027.png "Figure 1: Protection against malicious or accidental corruption of safety-critical PLC software and remote interfaces is now a mandatory health and safety requirement.")
 
 ### Safety requirements that address cybersecurity
 

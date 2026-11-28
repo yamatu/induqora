@@ -5,6 +5,9 @@ import { ActionForm } from "../ActionForm";
 
 export const metadata = { title: "Authors" };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Props = { searchParams: Promise<{ edit?: string; error?: string }> };
 
 const fields = [

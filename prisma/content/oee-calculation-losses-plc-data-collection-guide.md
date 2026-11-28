@@ -3,13 +3,16 @@ title: OEE in Manufacturing Explained: Formulas, Six Big Losses and Automated PL
 slug: oee-calculation-losses-plc-data-collection-guide
 type: BLOG
 category: smart-manufacturing
-author: edword
+author: edward
 tags: OEE, Smart manufacturing, ISA-95, PLC programming, Unified Namespace
 publishedAt: 2026-11-14T09:00:00Z
 featured: true
 excerpt: Overall Equipment Effectiveness (OEE) measures how much of a machine's planned production time actually produces good parts at full speed. Learn the exact OEE formulas, the Six Big Losses, how to collect accurate signals directly from PLCs using PackML, and how to prevent OEE gaming.
 seoTitle: OEE in Manufacturing: Formula, Losses & PLC Data Guide
 seoDescription: Practical engineering guide to OEE (Availability x Performance x Quality), the Six Big Losses, automated PLC data collection with PackML and common pitfalls.
+coverImage: /media/2026/11/cover-oee-calculation-losses-plc-data-collection-guide.jpg
+coverAlt: Analytical dashboard illustration of Overall Equipment Effectiveness waterfall bars and automated PLC PackML state signals
+coverCaption: Automating OEE directly from PLC run-state, part-count, and reject signals removes paper logging bias and surfaces hidden micro-stops.
 ---
 **Overall Equipment Effectiveness (OEE)** is the gold-standard manufacturing metric for measuring how effectively a piece of production equipment turns planned operating time into saleable, first-pass quality product. Developed within **Total Productive Maintenance (TPM)** and standardized in **ISO 22400-2**, OEE distills machine efficiency into a single percentage — and more importantly, breaks every lost minute into actionable engineering loss categories.
 
@@ -18,6 +21,8 @@ Yet in many factories, OEE dashboards are distrusted by operators and engineers 
 ## The OEE formula and worked shift example
 
 OEE is the product of three ratios:
+
+![OEE waterfall bar chart breaking down a 480-minute shift: 30 min scheduled lunch leaves 450 min planned time, 45 min downtime leaves 405 min run time (90.0% Availability), 40.5 min speed loss leaves 364.5 min net run (90.0% Performance), and 7.3 min scrap leaves 357.2 min fully productive time (79.38% OEE)](/media/2026/11/diagram-oee-calculation-losses-plc-data-collection-guide.png "Figure 1: Even when Availability (90%), Performance (90%), and Quality (98%) each look strong individually, their product reveals 92.8 minutes of lost shift capacity.")
 
 ```
 OEE = Availability × Performance × Quality

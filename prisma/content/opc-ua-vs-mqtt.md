@@ -3,13 +3,16 @@ title: OPC UA vs MQTT: How to Choose the Right Protocol for Industrial Data
 slug: opc-ua-vs-mqtt
 type: BLOG
 category: industrial-networking
-author: edword
+author: edward
 tags: OPC UA, MQTT, Sparkplug, IIoT, Unified Namespace
 publishedAt: 2026-10-07T09:00:00Z
 featured: true
 excerpt: OPC UA and MQTT are often presented as rivals, but they solve different problems. OPC UA models and secures machine data; MQTT moves messages efficiently to many consumers. This guide compares them on architecture, data modeling, security and performance — and explains when to use both.
 seoTitle: OPC UA vs MQTT: Differences and When to Use Each
 seoDescription: OPC UA vs MQTT compared on architecture, information modeling, security and scalability, plus how Sparkplug B and OPC UA PubSub over MQTT combine them.
+coverImage: /media/2026/11/cover-opc-ua-vs-mqtt.jpg
+coverAlt: Architectural graphic showing OPC UA machine-level semantic modeling paired with MQTT Sparkplug B broker distribution
+coverCaption: Most modern plants combine both: OPC UA for structured machine interfaces on the floor and MQTT Sparkplug B for scalable enterprise distribution.
 ---
 If you are connecting machines to SCADA, MES, a data platform or the cloud, two protocols dominate the conversation: **OPC UA** and **MQTT**. They are frequently framed as an either/or decision. In practice, they answer different questions:
 
@@ -45,6 +48,8 @@ That last point is MQTT's greatest strength and its biggest weakness in industri
 
 ## Sparkplug: adding industrial semantics to MQTT
 
+If you are implementing an OPC UA subscriber rather than choosing a protocol, the sampling-versus-publishing arithmetic is covered in [Rust OPC UA clients](/blog/rust-opc-ua-client-subscription-recovery-guide).
+
 **Sparkplug**, an Eclipse Foundation specification, fills that gap. It defines a topic namespace, a compact Protocol Buffers payload, and *state management* using birth and death certificates so that subscribers always know whether an edge node and its data are online and current. Sparkplug 3.0 has also been published as ISO/IEC 20237.
 
 Sparkplug is popular in architectures built around a **Unified Namespace (UNS)** — a central broker where every system publishes its current state in a consistent hierarchy, typically modeled on ISA-95 levels (enterprise / site / area / line / cell).
@@ -79,6 +84,8 @@ Sparkplug is popular in architectures built around a **Unified Namespace (UNS)**
 ## The common answer: use both
 
 Most modern architectures combine the two:
+
+![Hybrid industrial architecture diagram showing PLCs and CNC machines exposing structured OPC UA data models to edge gateways, which publish report-by-exception MQTT Sparkplug B topics to a central broker serving Historian, MES, and Analytics](/media/2026/11/diagram-opc-ua-vs-mqtt.png "Figure 1: Pairing OPC UA at the machine boundary with an MQTT Sparkplug B broker avoids point-to-point polling bottlenecks while preserving data context.")
 
 1. **OPC UA at the edge** to read structured data from controllers and machines.
 2. An **edge gateway** that normalizes data and publishes it via **MQTT/Sparkplug** to a broker.

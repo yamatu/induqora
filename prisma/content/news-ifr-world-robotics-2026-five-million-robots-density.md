@@ -3,13 +3,16 @@ title: IFR World Robotics 2026: Global Factory Robot Stock Hits 5 Million as Rob
 slug: ifr-world-robotics-2026-five-million-robots-density
 type: NEWS
 category: robotics
-author: edword
+author: edward
 tags: Industrial robotics, Smart manufacturing, Cobots, Automation investment
 publishedAt: 2026-11-22T14:00:00Z
 featured: true
 excerpt: The International Federation of Robotics reports that global operational factory robots reached a record 5 million units after 600,000+ new installations in 2025, while global manufacturing robot density climbed to 152 units per 10,000 employees in November 2026 data.
 seoTitle: IFR World Robotics 2026: 5M Robots & Record Robot Density
 seoDescription: IFR 2026 data shows 5 million industrial robots in global factories, the US overtaking Japan for #2 in installations, and South Korea leading density at 1,066.
+coverImage: /media/2026/11/cover-ifr-world-robotics-2026-five-million-robots-density.jpg
+coverAlt: Data editorial graphic highlighting IFR World Robotics 2026 milestone of 5 million operational factory robots worldwide
+coverCaption: Global factory robot stock surpassed 5 million units in IFR 2026 data, led by China in annual installations and South Korea in robot density.
 ---
 The global installed base of industrial robots in factories has crossed **5 million operational units** for the first time, according to the **World Robotics 2026** statistics released by the **International Federation of Robotics (IFR)** in September 2026 and expanded with new global **robot density** figures on **November 12, 2026**.
 
@@ -37,6 +40,8 @@ In the Americas, the **United States** grew 12% to nearly **38,500 installations
 ## November 2026 robot density data: South Korea tops 1,066
 
 In its follow-up density release on **November 12, 2026**, the IFR reported that the **global average manufacturing robot density** reached a record **152 industrial robots per 10,000 employees**.
+
+![Dual-panel horizontal bar chart of IFR World Robotics 2026 data: 2025 installations led by China (354,000), United States (38,500), Japan (36,219), South Korea (30,000), Germany (<25,000), and India (10,500); and robot density per 10,000 employees led by South Korea (1,066), Singapore (873), Germany (469), Japan (452), United States (323), EU-27 (240), China (193), and Global Average (152)](/media/2026/11/diagram-ifr-world-robotics-2026-five-million-robots-density.png "Figure 1: China accounts for 59% of new annual deployments while South Korea (1,066) and Singapore (873) lead manufacturing robot density.")
 
 | Country / Region | Robots per 10,000 Manufacturing Employees | Notes |
 |---|---|---|

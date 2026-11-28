@@ -3,12 +3,15 @@ title: PLC Scan Cycle Explained: Execution Order, Determinism, Interrupts and Wa
 slug: plc-scan-cycle-determinism-watchdog-timers
 type: BLOG
 category: plc-controllers
-author: edword
+author: edward
 tags: PLC programming, IEC 61131-3, Ladder Logic, Structured Text, Control system architecture
 publishedAt: 2026-11-10T09:00:00Z
 excerpt: Every PLC program runs inside a deterministic scan loop that reads inputs, executes logic and updates outputs. Understanding synchronous vs asynchronous I/O, task scheduling, hardware interrupts and watchdog timers prevents subtle timing bugs and surprise CPU faults.
 seoTitle: PLC Scan Cycle Explained: Determinism, Tasks & Watchdogs
 seoDescription: Deep dive into the PLC scan cycle: input/output image tables, synchronous vs asynchronous I/O, periodic tasks, hardware interrupts and watchdog timer sizing.
+coverImage: /media/2026/11/cover-plc-scan-cycle-determinism-watchdog-timers.jpg
+coverAlt: Illustration of a modular DIN-rail PLC chassis and deterministic cyclic scan timing loop
+coverCaption: Understanding scan phases, task preemption, and watchdog limits prevents intermittent machine timing defects.
 ---
 Software engineers coming from general-purpose computing are often surprised by their first week programming a PLC. A PLC does not wait for a user click and exit when `main()` returns; it runs an endless, time-bounded loop — the **PLC scan cycle** — designed to guarantee **determinism**: given an input change on a sensor, the controller must evaluate logic and drive the corresponding output within a predictable upper time bound, every single time.
 
@@ -49,6 +52,8 @@ Ignoring asynchronous I/O on a Logix controller is a classic trap: if Rung 10 ch
 ## Calculating worst-case response time (the 2× scan rule)
 
 Suppose a PLC has a **10 ms** scan time and a photoelectric sensor detects a bottle passing at high speed. What is the worst-case delay between the sensor turning ON and a pneumatic reject valve energizing?
+
+![PLC timing diagram showing four scan phases (Input Read, Logic Solve, Output Write, Comms), worst-case 2x scan I/O latency, interrupt preemption, and watchdog timeout boundary](/media/2026/11/diagram-plc-scan-cycle-determinism-watchdog-timers.png "Figure 1: Worst-case I/O latency approaches 2x scan time plus hardware filter delays; watchdog timers halt execution to a safe state if logic stalls.")
 
 1. The sensor turns ON **1 microsecond after** the Input Scan finishes (so the CPU misses it on Scan 1) → wait almost **1 full scan (10 ms)**.
 2. Scan 2 reads the input, runs logic and updates the output at the end of Scan 2 → another **1 full scan (10 ms)**.
@@ -93,6 +98,8 @@ Before signing off Factory Acceptance Testing (FAT), capture and document these 
 4. **Explicit I/O buffering routines** if deploying on an asynchronous-I/O controller family.
 5. **Watchdog threshold and fault-handler behavior** verified so outputs fail to their documented safe states on a fault.
 
+For hands-on field triage separating PLC watchdog stops from backplane faults, 24V power sag, and PROFINET remote I/O station dropouts on Siemens S7 and FANUC systems, review Vibocnc's guide to [troubleshooting PLC scan-cycle watchdog faults and remote I/O dropouts](https://vibocnc.com/blog/plc-scan-cycle-io-module-profinet-diagnostics-guide).
+
 === takeaways
 A classic PLC scan repeats four phases — reading inputs into an image table, executing user logic, updating outputs and servicing communications — to guarantee deterministic response times.
 Worst-case controller latency is approximately twice the scan time plus hardware input filtering and fieldbus cycle delays, so fast sensor pulses shorter than the worst-case scan require hardware interrupts or high-speed counter modules.
@@ -118,3 +125,4 @@ IEC 61131-3: Programmable controllers — Part 3: Programming languages (Interna
 PLCopen — Coding Guidelines and Software Architecture | https://www.plcopen.org/
 Rockwell Automation — Logix 5000 Controllers Tasks, Programs, and Routines Reference Manual | https://literature.rockwellautomation.com/
 Siemens — SIMATIC S7-1500 Cycle and Response Times Function Manual | https://support.industry.siemens.com/
+Vibocnc — Troubleshooting PLC Scan-Cycle Watchdog Faults, Remote I/O Dropouts, and Industrial Ethernet Latency | https://vibocnc.com/blog/plc-scan-cycle-io-module-profinet-diagnostics-guide

@@ -3,12 +3,15 @@ title: CISA and Siemens Issue November 2026 Advisories for SIMATIC WinCC, PCS 7 
 slug: cisa-siemens-simatic-wincc-pcs7-ntlm-advisories-nov-2026
 type: NEWS
 category: scada-hmi
-author: edword
+author: edward
 tags: SCADA, HMI, DCS, OT security, CISA advisories, Vulnerability management, Siemens SIMATIC
 publishedAt: 2026-11-21T16:00:00Z
 excerpt: On November 17, 2026, CISA published multiple ICS advisories for Siemens SCADA and DCS software, highlighting an NTLM authentication relay flaw (CVE-2026-58114) across WinCC, PCS 7 and Process Historian plus a WinCC Graphics Designer code execution issue (CVE-2026-59082).
 seoTitle: CISA & Siemens WinCC / PCS 7 Advisories (Nov 2026)
 seoDescription: CISA Nov 17, 2026 advisories ICSA-26-321-08 and ICSA-26-321-09 cover NTLM relay and active-content flaws in Siemens SIMATIC WinCC, PCS 7 and Process Historian.
+coverImage: /media/2026/11/cover-cisa-siemens-simatic-wincc-pcs7-ntlm-advisories-nov-2026.jpg
+coverAlt: SCADA security advisory graphic covering November 2026 CISA and Siemens SIMATIC WinCC and PCS 7 NTLM advisories
+coverCaption: Pending vendor patches for several WinCC and PCS 7 branches, enforcing SMB signing and blocking outbound NTLM mitigates credential relay.
 ---
 On **November 17, 2026**, the U.S. Cybersecurity and Infrastructure Security Agency (**CISA**) published a cluster of industrial control system (ICS) advisories covering **Siemens SIMATIC** supervisory and process control software, including **SIMATIC WinCC**, **SIMATIC PCS 7**, **SIMATIC BATCH**, **SIMATIC Process Historian** and **SIMATIC Information Server**.
 
@@ -20,6 +23,8 @@ Two advisories deserve immediate attention from SCADA, HMI and DCS administrator
 |---|---|---|---|---|
 | **ICSA-26-321-08** | **CVE-2026-58114** | SIMATIC WinCC V7.5 / V8.0 / V8.1; WinCC Runtime Professional V17–V21; SIMATIC PCS 7 V9.1; SIMATIC BATCH V9.1; Process Historian 2020 & 2022; Information Server 2020 & 2022 | NTLM relay authentication bypass (machine-in-the-middle session takeover) | Fixes in preparation for supported lines; **no fix planned** for legacy releases — manual SQL encryption recommended |
 | **ICSA-26-321-09** | **CVE-2026-59082** | SIMATIC WinCC V7.5, V8.0 and V8.1 (Graphics Designer prior to V8.2) | Implicit active content execution on opening project/graphics files (arbitrary code execution) | Fixes in preparation; restrict file handling to trusted sources and qualified staff |
+
+![SCADA security diagram illustrating CVE-2026-58114 NTLM relay and CVE-2026-59082 Graphics Designer risks across SIMATIC WinCC, PCS 7, and Process Historian with four interim network and Windows hardening controls](/media/2026/11/diagram-cisa-siemens-simatic-wincc-pcs7-ntlm-advisories-nov-2026.png "Figure 1: Blocking outbound SMB/NTLM and restricting untrusted Graphics Designer files substantially reduces exposure while awaiting version-specific Siemens patches.")
 
 ### 1. NTLM authentication relay across WinCC, PCS 7 and historians (ICSA-26-321-08)
 

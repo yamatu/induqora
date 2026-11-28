@@ -3,12 +3,15 @@ title: ISO 13849-1 vs IEC 62061: Choosing and Applying Functional Safety Standar
 slug: functional-safety-iso-13849-vs-iec-62061-guide
 type: BLOG
 category: standards-regulation
-author: edword
+author: edward
 tags: Functional safety, Machine safety, Machinery Regulation, EU regulation, IEC 62443
 publishedAt: 2026-10-12T09:00:00Z
 excerpt: Both ISO 13849-1 and IEC 62061 provide harmonized pathways for designing safety-related machine control systems — including compliance with the EU Machinery Regulation taking effect January 20, 2027. Compare PL vs SIL, Categories B–4, MTTFd, software rules and which standard fits your machine.
 seoTitle: ISO 13849-1 vs IEC 62061: Machine Functional Safety Guide
 seoDescription: Compare ISO 13849-1 (PL a–e) and IEC 62061 (SIL 1–3) for machinery safety: PFH mapping, Categories B–4, SISTEMA verification and EU Machinery Regulation.
+coverImage: /media/2026/11/cover-functional-safety-iso-13849-vs-iec-62061-guide.jpg
+coverAlt: Functional safety engineering graphic illustrating ISO 13849-1 Performance Levels and IEC 62061 Safety Integrity Levels
+coverCaption: Both ISO 13849-1 and IEC 62061 converge on Probability of Dangerous Failure per Hour (PFH) for compliant machine safety design.
 ---
 Whenever a machine builder designs an emergency stop circuit, a light-curtain guard interlock, a two-hand press control or a [drive-integrated Safe Torque Off (STO) / Safe Limited Speed (SLS) function](/blog/safe-torque-off-sto-functional-safety-drives-iec-61800-5-2), one question arises immediately: **should we engineer and validate the safety control system under ISO 13849-1 or IEC 62061?**
 
@@ -35,6 +38,8 @@ Both standards address **Safety-Related Parts of Control Systems (SRP/CS)** in m
 ## Mapping Performance Level (PL) to SIL via PFH
 
 Because both standards measure high-demand / continuous machinery safety using the same quantitative metric — **Average Probability of a Dangerous Failure per Hour (`PFH` or `PFH_D`)** — their levels map cleanly to one another:
+
+![Safety engineering scale mapping ISO 13849-1 Performance Levels PL a through PL e directly to IEC 62061 SIL 1 through SIL 3 across PFH failure bands alongside single-channel and dual-channel Category B through Category 4 diagrams](/media/2026/11/diagram-functional-safety-iso-13849-vs-iec-62061-guide.png "Figure 1: PL d corresponds to SIL 2 and PL e corresponds to SIL 3; achieving PL e requires dual-channel redundancy (Category 3 or 4) with high diagnostic coverage.")
 
 | ISO 13849-1 Performance Level | Probability of Dangerous Failure per Hour (`PFH`) | Corresponding IEC 62061 SIL |
 |---|---|---|

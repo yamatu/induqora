@@ -9,6 +9,9 @@ import { clampPage } from "@/lib/utils";
 
 export const revalidate = 300;
 
+/** Tags below this post count are too thin to rank and only burn crawl budget. */
+const INDEX_MIN_POSTS = 3;
+
 type Props = { params: Promise<{ slug: string }>; searchParams: Promise<{ page?: string }> };
 
 const getTag = cache(async (slug: string) => {
@@ -18,16 +21,19 @@ const getTag = cache(async (slug: string) => {
   return { ...tag, count };
 });
 
+function tagDescription(name: string, count: number) {
+  return `${count} Induqora articles on ${name} — technical explainers, news and engineering analysis.`;
+}
+
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const tag = await getTag((await params).slug);
   const page = clampPage((await searchParams).page);
   const path = `/tag/${tag.slug}`;
   return pageMetadata({
     title: `${tag.name}${page > 1 ? ` — Page ${page}` : ""}`,
-    description: tag.description || `All Induqora articles about ${tag.name}: news, technical explainers and industry analysis.`,
+    description: tag.description || tagDescription(tag.name, tag.count),
     path: page > 1 ? `${path}?page=${page}` : path,
-    // Thin tag pages dilute crawl budget; index only once they have real depth.
-    noindex: tag.count < 2,
+    noindex: tag.count < INDEX_MIN_POSTS,
   });
 }
 
@@ -41,7 +47,7 @@ export default async function TagPage({ params, searchParams }: Props) {
     <ListingPage
       title={tag.name}
       kicker="Tag"
-      description={tag.description || `All Induqora articles about ${tag.name}.`}
+      description={tag.description || tagDescription(tag.name, tag.count)}
       path={path}
       crumbs={[
         { name: "Home", path: "/" },

@@ -3,13 +3,16 @@ title: Unified Namespace (UNS) Explained: Architecture, ISA-95 Topic Design and 
 slug: unified-namespace-uns-architecture-practical-guide
 type: BLOG
 category: iiot-edge
-author: edword
+author: edward
 tags: Unified Namespace, MQTT, Sparkplug, OPC UA, IIoT, ISA-95, Edge computing
 publishedAt: 2026-11-16T09:00:00Z
 featured: true
 excerpt: A Unified Namespace (UNS) replaces brittle point-to-point factory integrations with a single event-driven data hub organized around your physical plant hierarchy. Learn how UNS works with MQTT, Sparkplug B, OPC UA and ISA-95 — and what breaks in real deployments.
 seoTitle: Unified Namespace (UNS) Explained: Architecture & Guide
 seoDescription: Practical guide to Unified Namespace (UNS) in manufacturing: ISA-95 topic hierarchy, MQTT Sparkplug B vs JSON, OPC UA integration and deployment pitfalls.
+coverImage: /media/2026/11/cover-unified-namespace-uns-architecture-practical-guide.jpg
+coverAlt: Hub-and-spoke Unified Namespace broker graphic connecting plant-floor machines, SCADA, MES, and analytics through an ISA-95 topic hierarchy
+coverCaption: A Unified Namespace replaces brittle point-to-point integrations with a live, brokered tree of current plant state.
 ---
 Most manufacturing plants did not design their data architecture — they accumulated it. Over twenty years, SCADA connects directly to PLCs, an historian polls SCADA, MES queries the historian and talks directly to barcode scanners, ERP runs overnight batch imports from MES, and a new analytics platform adds yet another set of direct PLC connections. Every new application multiplies point-to-point interfaces until changing a single line controller risks breaking four downstream systems.
 
@@ -35,6 +38,8 @@ Crucially, a UNS holds **current state and live events**, not decades of histori
 | Data context | Often trapped in vendor-specific tag names (`DB10.DBD4`) | Standardized hierarchy (`enterprise/site/area/line/cell/metric`) |
 | PLC network load | Scales linearly with every client polling the controller | Constant — one edge node reads the PLC and publishes once |
 | Security boundary | Enforced strictly between vertical Purdue levels | Enforced via broker TLS, client certificates, ACLs and DMZ bridging |
+
+![Comparison architecture diagram showing tangled point-to-point connections on the left versus a clean hub-and-spoke Unified Namespace broker organized by ISA-95 Enterprise/Site/Area/Line/Cell topics on the right](/media/2026/11/diagram-unified-namespace-uns-architecture-practical-guide.png "Figure 1: Publishing current equipment state once into an ISA-95 structured broker lets SCADA, MES, Historian, and BI tools subscribe independently without polling PLCs directly.")
 
 A common misconception is that adopting a UNS means throwing away network security or flattening the plant network. In production plants, **security segmentation still follows [IEC 62443 zones and conduits](/blog/iec-62443-explained)** — local brokers run inside the plant or IDMZ and bridge outbound to enterprise or cloud brokers over controlled conduits.
 

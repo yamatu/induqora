@@ -3,12 +3,15 @@ title: MES vs ERP vs SCADA: How ISA-95 Defines Manufacturing Systems and Data Fl
 slug: mes-vs-erp-vs-scada-isa-95-integration-guide
 type: BLOG
 category: smart-manufacturing
-author: edword
+author: edward
 tags: ISA-95, SCADA, Smart manufacturing, OEE, Unified Namespace, Control system architecture
 publishedAt: 2026-11-01T09:00:00Z
 excerpt: ERP plans the business, MES orchestrates plant-floor execution and SCADA supervises equipment in real time — yet overlapping software features routinely cause costly boundary mistakes. Learn how ISA-95 separates MES, ERP and SCADA and how they exchange data cleanly.
 seoTitle: MES vs ERP vs SCADA: ISA-95 Architecture & Data Flows
 seoDescription: Clear engineering comparison of ERP, MES and SCADA under ISA-95 (IEC 62264): functional boundaries, timescales, common pitfalls and UNS/API data flows.
+coverImage: /media/2026/11/cover-mes-vs-erp-vs-scada-isa-95-integration-guide.jpg
+coverAlt: ISA-95 manufacturing pyramid graphic connecting Level 4 ERP business planning, Level 3 MES execution, and Level 2 SCADA supervision
+coverCaption: Clear ISA-95 boundaries keep business scheduling in ERP, work-order execution in MES, and real-time control in SCADA and PLCs.
 ---
 Ask three vendors where **SCADA** ends, where **MES** begins, and what should live inside **ERP**, and you will get three contradictory diagrams — each conveniently expanding the boundary of whichever software license that vendor sells. When a manufacturer buys overlapping tools without a clear functional architecture, the result is familiar: operators re-typing batch numbers into three screens, conflicting scrap totals between Finance and Production, and fragile custom scripts gluing everything together.
 
@@ -50,6 +53,8 @@ As detailed in our comparison of [SCADA vs DCS](/blog/scada-vs-dcs-differences),
 ## How data flows across ERP, MES and SCADA
 
 In a clean ISA-95 integration, data moves along two distinct loops:
+
+![ISA-95 five-level pyramid diagram showing Level 4 ERP (days/months), Level 3 MES (shifts/orders), Level 2 SCADA/HMI (seconds/minutes), Level 1 PLC/DCS (milliseconds), and Level 0 field devices with downward order dispatch and upward genealogy/OEE feedback arrows](/media/2026/11/diagram-mes-vs-erp-vs-scada-isa-95-integration-guide.png "Figure 1: Orders, recipes, and BOMs flow downward from ERP through MES to the shop floor; actual counts, quality status, and material genealogy flow upward.")
 
 ### Downward loop (Planning → Execution → Control)
 

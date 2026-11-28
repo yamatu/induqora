@@ -3,12 +3,15 @@ title: CISA Warns of Unauthenticated Admin Account Creation Flaw in OpenPLC Runt
 slug: cisa-openplc-runtime-race-condition-cve-2026-126088
 type: NEWS
 category: plc-controllers
-author: edword
+author: edward
 tags: IEC 61131-3, OT security, ICS security, CISA advisories, Vulnerability management
 publishedAt: 2026-11-22T20:00:00Z
 excerpt: CISA issued ICS Advisory ICSA-26-323-01 on November 19, 2026 warning of a race condition (CVE-2026-126088) in Autonomy Logic OpenPLC Runtime versions 4.2.4 and earlier that lets unauthenticated remote attackers create admin accounts. Version 4.3.0 fixes the flaw.
 seoTitle: CISA OpenPLC Runtime Flaw CVE-2026-126088: Patch to 4.3.0
 seoDescription: CISA ICSA-26-323-01 warns of CVE-2026-126088 in OpenPLC Runtime <=4.2.4 allowing unauthenticated admin creation. Upgrade to 4.3.0 and harden soft-PLC access.
+coverImage: /media/2026/11/cover-cisa-openplc-runtime-race-condition-cve-2026-126088.jpg
+coverAlt: OT cybersecurity advisory graphic highlighting CVE-2026-126088 race condition in OpenPLC Runtime versions 4.2.4 and earlier
+coverCaption: Upgrade OpenPLC Runtime immediately to v4.3.0 and isolate soft-PLC management web interfaces behind authenticated OT VLANs.
 ---
 On **November 19, 2026**, the U.S. Cybersecurity and Infrastructure Security Agency (**CISA**) published ICS Advisory **ICSA-26-323-01**, warning operators of a high-severity race condition in **Autonomy Logic OpenPLC Runtime** (**CVE-2026-126088**) that could allow remote, unauthenticated attackers to create administrative accounts on vulnerable soft-PLC deployments.
 
@@ -25,6 +28,8 @@ OpenPLC is one of the most widely adopted open-source [IEC 61131-3](/blog/iec-61
 | **Fixed Version** | **OpenPLC Runtime 4.3.0** or later |
 | **CVSS v3.1 Vector** | `AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H` (High confidentiality, integrity and availability impact; no privileges or user interaction required) |
 | **Affected Sectors** | Critical Manufacturing, Energy, Transportation Systems, Water and Wastewater Systems |
+
+![Security diagram showing CVE-2026-126088 race condition allowing unauthenticated admin account creation on OpenPLC Runtime <=4.2.4 and immediate remediation steps led by patching to v4.3.0 and isolating management ports](/media/2026/11/diagram-cisa-openplc-runtime-race-condition-cve-2026-126088.png "Figure 1: Open-source soft-PLCs controlling real I/O require identical network segmentation and patch governance as proprietary hardware controllers.")
 
 According to CISA's advisory — reported by security researcher Noureddin Lutfi — OpenPLC Runtime versions **4.2.4 and prior** contain an improper synchronization flaw during administrative user initialization. When multiple concurrent HTTP requests reach the account-creation check before the first administrative user is committed to storage, **multiple concurrent requests pass the existence check**, enabling the creation of **several unauthenticated admin accounts**.
 

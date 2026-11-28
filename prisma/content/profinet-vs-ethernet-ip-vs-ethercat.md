@@ -3,12 +3,15 @@ title: PROFINET vs EtherNet/IP vs EtherCAT: Industrial Ethernet Protocols Compar
 slug: profinet-vs-ethernet-ip-vs-ethercat
 type: BLOG
 category: industrial-networking
-author: edword
+author: edward
 tags: PROFINET, EtherNet/IP, EtherCAT, Industrial Ethernet, Modbus TCP
 publishedAt: 2026-11-04T09:00:00Z
 excerpt: PROFINET, EtherNet/IP and EtherCAT all run on Ethernet cabling, but they work in fundamentally different ways. This comparison explains how each protocol moves real-time I/O data, how they differ in performance, topology and ecosystem, and which factors should drive your choice.
 seoTitle: PROFINET vs EtherNet/IP vs EtherCAT Compared
 seoDescription: How PROFINET, EtherNet/IP and EtherCAT differ in architecture, real-time performance, topology, diagnostics and ecosystem — and how to choose between them.
+coverImage: /media/2026/11/cover-profinet-vs-ethernet-ip-vs-ethercat.jpg
+coverAlt: Industrial Ethernet ring topology graphic comparing PROFINET, EtherNet/IP, and EtherCAT real-time communication frames
+coverCaption: Protocol choice shapes motion synchronization precision, cabling topology, switch cost, and multi-vendor interoperability.
 ---
 Industrial Ethernet has largely replaced classic fieldbuses such as PROFIBUS and DeviceNet for new installations. But "Ethernet" only describes the physical layer and frame format. On top of it, the major industrial protocols take very different approaches to delivering deterministic, real-time I/O data.
 
@@ -56,7 +59,7 @@ EtherCAT works on a completely different principle called **processing on the fl
 - The master can be a standard Ethernet port on a PC or controller — no special hardware required on the master side.
 - Devices are described in **ESI** (XML) files.
 
-**Strengths:** very short cycle times, precise synchronization, flexible topology (line, tree, star via junctions), low cost per node and the Safety over EtherCAT (FSoE) protocol.
+**Strengths:** very short cycle times, precise synchronization, flexible topology (line, tree, star via junctions), low cost per node and the Safety over EtherCAT (FSoE) protocol. Those short cycles are only usable if the master can actually hit them — see [EtherCAT on PREEMPT_RT Linux](/blog/rust-ethercat-preempt-rt-linux-jitter-guide) for the jitter budget behind that number.
 
 ## Modbus TCP
 
@@ -73,6 +76,8 @@ Modbus TCP wraps the simple Modbus register model in TCP (port 502). It is not d
 | Device description file | GSDML | EDS | ESI |
 | Ring redundancy | MRP | DLR | Cable redundancy (ring) |
 | Functional safety profile | PROFIsafe | CIP Safety | Safety over EtherCAT (FSoE) |
+
+![Logarithmic horizontal bar chart comparing industrial Ethernet cycle times: EtherCAT (30-100 microseconds), PROFINET IRT (0.25-1 ms), PROFINET RT (1-10 ms), EtherNet/IP CIP (1-10 ms), and Modbus TCP (10-100 ms)](/media/2026/11/diagram-profinet-vs-ethernet-ip-vs-ethercat.png "Figure 1: EtherCAT processes frames on-the-fly in hardware for sub-100 us motion sync, while PROFINET RT and EtherNet/IP rely on standard or managed Ethernet switching.")
 
 ## How to choose
 

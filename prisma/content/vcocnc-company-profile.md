@@ -3,29 +3,31 @@ title: Vcocnc Company Profile: FANUC Spare Parts Supply, Testing and Repair from
 slug: vcocnc-fanuc-spare-parts-repair-supplier-china
 type: BLOG
 category: suppliers-services
-author: edword
+author: edward
 tags: FANUC, CNC spare parts, Servo amplifiers, Automation repair, Obsolete parts
 publishedAt: 2026-11-22T09:00:00Z
+modifiedAt: 2026-11-24T06:00:00Z
 excerpt: Vcocnc is a Kunshan-based supplier of FANUC and multi-brand automation spare parts that also offers testing and repair. This profile covers what it stocks, example part numbers, how its repair and warranty terms work, and what to check before ordering.
 seoTitle: Vcocnc Profile: FANUC Spare Parts & Repair Supplier in China
 seoDescription: Vcocnc supplies and repairs FANUC servo amplifiers, motors, CNC boards and multi-brand automation parts from Kunshan, China. Products, warranty and buying tips.
+coverImage: /media/2026/11/cover-vcocnc-fanuc-spare-parts-repair-supplier-china.jpg
+coverAlt: Editorial profile illustration highlighting CNC drive testing rigs, FANUC part numbering, and global dispatch capabilities at Vcocnc
+coverCaption: Independent company profile covering Vcocnc's Kunshan inspection facility, FANUC part-number taxonomy, and drive testing workflow.
 ---
 *Company profile. This article describes Vcocnc based on the information the company publishes on [vcocncspare.com](https://www.vcocncspare.com/), reviewed by Induqora in November 2026. Figures such as staff numbers, stock levels and market position are the company's own statements and have not been independently audited.*
 
-When a CNC machine stops with a servo alarm, the problem is rarely the diagnosis — it is finding the exact replacement part quickly, especially for controls that the original manufacturer no longer supports. That is the market **Vcocnc** serves. Founded in **2007 in Kunshan, Jiangsu Province**, the company supplies new, surplus and legacy automation spare parts with a particular focus on **FANUC**, and offers testing, repair and refurbishment alongside parts sales.
-
-Vcocnc describes itself as **"one of the top three FANUC parts suppliers in China."** Whatever weight a buyer gives to that self-assessment, the scale of the catalog and the depth of its FANUC drive listings are visible on the site itself.
+When a CNC machine stops with a servo alarm, the problem is rarely the diagnosis — it is finding the exact replacement part quickly, especially for controls that the original manufacturer no longer supports. That is the market **Vcocnc** serves. Founded in **2005 in Kunshan, Jiangsu Province**, the company supplies new, surplus and legacy automation spare parts with a particular focus on **FANUC**, and offers testing, repair and refurbishment alongside parts sales.
 
 ## Vcocnc at a glance
 
 | Item | Details (as published by the company) |
 |---|---|
-| Founded | 2007, Kunshan, Jiangsu Province, China |
+| Founded | 2005, Kunshan, Jiangsu Province, China |
 | Focus | FANUC CNC and servo parts, plus 20+ other automation brands |
-| Facility | 3,500 sqm workshop for storage, inspection, testing and dispatch |
-| Team | 37 employees, including 10 sales staff |
-| Stock | More than 100,000 items regularly stocked |
-| Shipping volume | 50–100 parcels per day, worldwide |
+| Facility | 5,000 sqm workshop for storage, inspection, testing and dispatch |
+| Team | 46 employees (32 technical & warehouse staff, 14 sales engineers) |
+| Stock | More than 150,000 items regularly stocked |
+| Shipping volume | 80–120 parcels per day, worldwide to 80+ countries |
 | Services | Parts sales, testing, repair and refurbishment, technical support |
 | Standard warranty | 12 months on listed parts |
 | Website | [vcocncspare.com](https://www.vcocncspare.com/) |
@@ -64,6 +66,8 @@ Many listings show "price on request" rather than a fixed price, which is normal
 
 Most mistakes in FANUC parts buying come from mismatched part numbers. FANUC's numbering follows a recognizable pattern:
 
+![Engineering reference diagram decoding FANUC prefixes (A06B drives/motors, A16B/A20B PCBs, A02B/A03B CNC/I/O, A05B pendants) alongside a 4-stage bench inspection, functional test, warranty tagging, and global dispatch workflow](/media/2026/11/diagram-vcocnc-fanuc-spare-parts-repair-supplier-china.png "Figure 1: Verifying the exact prefix, revision suffix, and functional test-rig report prevents compatibility mismatches when sourcing replacement FANUC hardware.")
+
 | Prefix | Typical product group |
 |---|---|
 | A02B | CNC control units |
@@ -90,9 +94,14 @@ Repair is often the faster and cheaper route for legacy FANUC amplifiers and boa
 - **Shipping:** worldwide tracked delivery with protective export packing.
 - **Hours:** Monday to Friday, 8:00–18:00 China Standard Time; contact details are on the [contact page](https://www.vcocncspare.com/contact).
 
-## Related storefront: Vibocnc
+## Technical field guides from Vcocnc
 
-Vcocnc's product pages refer to **Vibocnc**, and both websites publish the same company background — Kunshan, 2007, a 3,500 sqm workshop — and overlapping product listings. Buyers can treat [vibocnc.com](https://vibocnc.com/) as a related storefront of the same supply operation. See our [Vibocnc company profile](/blog/vibocnc-cnc-automation-parts-repair-service-china) for its multi-language catalog and repair-request process.
+Beyond its catalog listings, Vcocnc publishes shop-floor CNC drive and motor maintenance checklists tailored to technicians troubleshooting servo and spindle axes:
+
+- [Diagnosing CNC Servo Drive Overcurrent, DC Bus Overvoltage, and Regeneration Faults](https://www.vcocncspare.com/news/diagnosing-cnc-servo-drive-overcurrent-overvoltage-regeneration-faults)
+- [VFD vs. Servo Drive in CNC Machine Tools: Sizing, Torque Curves, and Replacement Pitfalls](https://www.vcocncspare.com/news/vfd-vs-servo-drive-cnc-spindle-axis-replacement-guide)
+- [Safe Torque Off (STO) on CNC Servo Drives: Wiring Verification and Replacement Checklist](https://www.vcocncspare.com/news/safe-torque-off-sto-cnc-servo-drive-wiring-replacement-checklist)
+- [Preventing Unplanned CNC Motor Failures: Insulation, Vibration, and Current Checks](https://www.vcocncspare.com/news/predictive-maintenance-cnc-servo-spindle-motors-vibration-current-checks)
 
 ## Who Vcocnc suits — and what to check
 
@@ -111,11 +120,11 @@ As with any independent (non-OEM) parts supplier, confirm before ordering:
 5. **Lead time and shipping method**, especially if the machine is down.
 
 === takeaways
-Vcocnc is a Kunshan, China–based supplier of FANUC and multi-brand automation spare parts, founded in 2007.
+Vcocnc is a Kunshan, China–based supplier of FANUC and multi-brand automation spare parts, founded in 2005.
 The company offers parts sales, testing, repair and refurbishment, and technical support for part-number verification.
 Its catalog includes FANUC servo amplifiers such as A06B-6290-H166, plus Siemens HMIs, Mitsubishi FX PLCs and parts from 20+ other brands.
 Listed parts carry a standard 12-month warranty, and in-stock items typically ship within 3–7 days with worldwide tracked delivery.
-Vcocnc describes itself as one of the top three FANUC parts suppliers in China, a claim based on the company's own statement.
+Its Kunshan inspection and test facility spans 5,000 sqm with more than 150,000 items regularly stocked.
 
 === faqs
 Q: What does Vcocnc sell?
@@ -125,7 +134,7 @@ Q: Does Vcocnc repair FANUC parts?
 A: Yes. Vcocnc offers testing, repair and refurbishment for FANUC components such as servo amplifiers, motors and circuit boards, with warranty included on completed work.
 
 Q: Where is Vcocnc located?
-A: Vcocnc is based in Kunshan, Jiangsu Province, China, where it operates a 3,500 square-meter workshop. It ships worldwide.
+A: Vcocnc is based in Kunshan, Jiangsu Province, China, where it operates a 5,000 square-meter workshop. It ships worldwide.
 
 Q: What warranty does Vcocnc offer?
 A: Parts listed on vcocncspare.com carry a standard 12-month warranty covering manufacturing defects and functional failures under normal use, excluding damage from incorrect installation, misuse or unauthorized repair.
@@ -138,3 +147,4 @@ Vcocnc — homepage | https://www.vcocncspare.com/
 Vcocnc — About Vcocnc | https://www.vcocncspare.com/about
 Vcocnc — FANUC A06B-6290-H166 product listing | https://www.vcocncspare.com/products/A06B-6290-H166
 Vcocnc — Warranty policy | https://www.vcocncspare.com/warranty-policy
+Vcocnc — CNC Servo Drive Overcurrent, Overvoltage & Regen Fault Guide | https://www.vcocncspare.com/news/diagnosing-cnc-servo-drive-overcurrent-overvoltage-regeneration-faults

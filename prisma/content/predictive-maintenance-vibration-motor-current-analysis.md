@@ -3,12 +3,15 @@ title: Condition Monitoring and Predictive Maintenance: Vibration, Motor Current
 slug: predictive-maintenance-vibration-motor-current-analysis
 type: BLOG
 category: smart-manufacturing
-author: edword
+author: edward
 tags: Condition monitoring, Smart manufacturing, VFDs, Edge computing, IIoT, OEE
 publishedAt: 2026-10-23T09:00:00Z
 excerpt: Predictive maintenance catches bearing wear, misalignment and electrical faults weeks before catastrophic breakdown — when paired with the right sensors and physics. Compare vibration analysis, ultrasound, Motor Current Signature Analysis (MCSA) and edge deployment strategies.
 seoTitle: Predictive Maintenance: Vibration, MCSA & Edge Guide
 seoDescription: Guide to condition monitoring and predictive maintenance: P-F curve, MEMS vs piezo vibration sensors, FFT fault frequencies, VFD MCSA and edge rollouts.
+coverImage: /media/2026/11/cover-predictive-maintenance-vibration-motor-current-analysis.jpg
+coverAlt: Predictive maintenance waveform illustration showing vibration FFT harmonic peaks and an asset P-F degradation curve
+coverCaption: Detecting bearing defects early on the P-F curve with edge vibration FFT and motor current analysis turns breakdowns into planned swaps.
 ---
 Unplanned breakdowns on a critical fan, main compressor, hydraulic pump or CNC spindle are the single most destructive driver of [Availability loss in OEE](/blog/oee-calculation-losses-plc-data-collection-guide). Traditional **calendar-based preventive maintenance (PM)** — swapping bearings or belts every 4,000 hours whether they need it or not — wastes parts, burns technician hours and frequently introduces *infant-mortality* failures through installation misalignment.
 
@@ -17,6 +20,8 @@ Unplanned breakdowns on a critical fan, main compressor, hydraulic pump or CNC s
 ## The P-F curve: matching the sensor to the failure stage
 
 Most mechanical and electrical faults do not happen instantaneously — they progress along the **P-F (Potential-to-Functional failure) curve**, leaving measurable physical signatures weeks or months before seizure:
+
+![Asset health P-F curve plotting condition against time with detection points marked from earliest to latest: Ultrasound, Vibration FFT spectrum, Motor Current Signature Analysis (MCSA), Infrared Thermography, Audible Noise/Heat, and Functional Failure](/media/2026/11/diagram-predictive-maintenance-vibration-motor-current-analysis.png "Figure 1: Earlier detection along the P-F curve multiplies maintenance planning lead time and avoids collateral damage to shafts, spindles, and drives.")
 
 | Stage Before Breakdown | Physical Fault Progression | Best Detection Technique | Typical Lead Time (P-F Interval) |
 |---|---|---|---|
@@ -87,6 +92,8 @@ Streaming raw 25.6 kHz triaxial vibration waveforms from 200 motors continuously
 4. **Integrate alerts directly into the CMMS work-order workflow:** An anomaly email sitting in a data scientist's inbox fixes nothing. Route confirmed Stage-2 alerts automatically into maintenance planning with clear inspection instructions ("Inspect Motor M-204 drive-end bearing — elevated BPFO amplitude").
 5. **Close the feedback loop:** When technicians pull a flagged bearing or motor, inspect and photograph the failed raceway and log the true root cause — every verified catch builds plant-floor trust and sharpens your thresholds.
 
+For a concrete shop-floor inspection schedule applying insulation resistance testing, CNC load-meter trending, holding-brake checks, and vibration checks to machine-tool axes, see Vcocnc's guide on [preventing unplanned CNC servo and spindle motor failures](https://www.vcocncspare.com/news/predictive-maintenance-cnc-servo-spindle-motors-vibration-current-checks).
+
 === takeaways
 Condition monitoring and predictive maintenance detect mechanical and electrical degradation weeks before catastrophic failure by tracking early P-F curve signatures such as ultrasound, vibration and motor current — long before temperature rises.
 Broadband RMS vibration velocity (ISO 20816) catches unbalance, misalignment and looseness, while FFT spectrum analysis pinpoints exact bearing raceway, gearbox and electrical fault frequencies.
@@ -112,3 +119,4 @@ ISO 20816-3:2022: Mechanical vibration — Measurement and evaluation of machine
 ISO 13373-1: Condition monitoring and diagnostics of machines — Vibration condition monitoring | https://www.iso.org/standard/21832.html
 ISO 17359: Condition monitoring and diagnostics of machines — General guidelines | https://www.iso.org/standard/66468.html
 IEEE Std 1415: Guide for Induction Machinery Maintenance Testing and Failure Analysis | https://standards.ieee.org/
+Vcocnc — Preventing Unplanned CNC Motor Failures: Insulation, Vibration, and Current Checks | https://www.vcocncspare.com/news/predictive-maintenance-cnc-servo-spindle-motors-vibration-current-checks

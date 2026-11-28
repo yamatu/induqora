@@ -3,12 +3,15 @@ title: ENISA and EU Cyber Agencies Warn of Coordinated Attacks on Commercial Ref
 slug: enisa-eu-warning-cyber-incidents-refrigeration-control-systems-2026
 type: NEWS
 category: ot-cybersecurity
-author: edword
+author: edward
 tags: OT security, ICS security, EU regulation, Cyber Resilience Act, Vulnerability management
 publishedAt: 2026-11-22T10:30:00Z
 excerpt: Following attack waves on October 11 and November 1–2, 2026 affecting commercial refrigeration controllers across multiple EU Member States, ENISA, the European Commission, Europol EC3 and EU-CyCLONe urged operators to lock down exposed OT controllers immediately.
 seoTitle: ENISA Warns of EU Cyberattacks on Refrigeration OT Systems
 seoDescription: ENISA, Europol EC3 and EU-CyCLONe issued a joint alert after October–November 2026 cyber incidents targeting commercial refrigeration controllers in the EU.
+coverImage: /media/2026/11/cover-enisa-eu-warning-cyber-incidents-refrigeration-control-systems-2026.jpg
+coverAlt: EU cybersecurity alert graphic illustrating attacks on internet-exposed commercial refrigeration and building OT controllers
+coverCaption: ENISA, Europol EC3, and EU-CyCLONe warned operators after coordinated October–November 2026 attacks hit exposed refrigeration controllers.
 ---
 European cybersecurity authorities have issued an urgent joint warning after multiple waves of cyber incidents disrupted **commercial refrigeration systems and similar operational technology (OT) controllers** across several EU Member States.
 
@@ -17,6 +20,8 @@ In a joint statement issued following a first wave of attacks starting **October
 ## Why building and refrigeration controllers are prime targets
 
 Commercial refrigeration racks, cold-storage supervisory controllers, HVAC building management systems (BMS) and auxiliary plant utilities sit in an awkward blind spot between corporate IT and core factory automation:
+
+![OT defense diagram mapping how attackers target internet-exposed commercial refrigeration controllers during October-November 2026 waves and detailing four immediate isolation controls recommended by ENISA](/media/2026/11/diagram-enisa-eu-warning-cyber-incidents-refrigeration-control-systems-2026.png "Figure 1: Auxiliary refrigeration and BMS controllers often sit outside IT/OT security monitoring; removing direct internet exposure closes the primary intrusion path.")
 
 - They are frequently installed and serviced by external contractors rather than the plant's internal controls or IT security team.
 - To simplify remote service calls, controllers and supervisory gateways are often left directly reachable from the public internet — or protected only by default vendor credentials and unsegmented store/facility networks.

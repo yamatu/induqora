@@ -3,12 +3,15 @@ title: EU Cyber Resilience Act Reporting Obligations Now Apply: What Automation 
 slug: eu-cyber-resilience-act-reporting-obligations-apply
 type: NEWS
 category: standards-regulation
-author: edword
+author: edward
 tags: Cyber Resilience Act, EU regulation, Vulnerability management, OT security
 publishedAt: 2026-09-11T08:00:00Z
 excerpt: From September 11, 2026, manufacturers of products with digital elements sold in the EU — including PLCs, HMIs, industrial network devices and engineering software — must report actively exploited vulnerabilities and severe security incidents within 24 hours.
 seoTitle: EU Cyber Resilience Act Reporting Obligations Now Apply
 seoDescription: CRA vulnerability and incident reporting applies from September 11, 2026. Deadlines, scope and practical steps for industrial automation manufacturers.
+coverImage: /media/2026/11/cover-eu-cyber-resilience-act-reporting-obligations-apply.jpg
+coverAlt: EU Cyber Resilience Act compliance graphic highlighting 24-hour and 72-hour mandatory vulnerability reporting timelines
+coverCaption: Article 14 CRA reporting rules require automation OEMs to alert CSIRTs and ENISA within 24 hours of active exploitation.
 ---
 The first major operational obligations of the **EU Cyber Resilience Act (CRA)** apply from **September 11, 2026**. From this date, manufacturers must report **actively exploited vulnerabilities** and **severe incidents** affecting the security of their products with digital elements.
 
@@ -34,6 +37,8 @@ Importantly, the reporting obligations apply to products already on the market �
 - **June 11, 2026:** Provisions on conformity assessment bodies began to apply.
 - **September 11, 2026:** Vulnerability and incident reporting obligations apply.
 - **December 11, 2027:** The remaining obligations apply, including the essential cybersecurity requirements, conformity assessment and CE marking for cybersecurity.
+
+![Regulatory timeline graphic showing CRA milestones (Dec 10 2024 entry into force, Jun 11 2026 conformity bodies, Sep 11 2026 reporting live, Dec 11 2027 full CE marking) plus the 24-hour early warning, 72-hour notification, and 14-day/1-month final report clock](/media/2026/11/diagram-eu-cyber-resilience-act-reporting-obligations-apply.png "Figure 1: Reporting duties apply immediately to products already on the EU market, ahead of full cybersecurity CE-marking obligations on December 11, 2027.")
 
 ## What this means for automation manufacturers
 

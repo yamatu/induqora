@@ -3,12 +3,15 @@ title: Managing Obsolete PLC, HMI and Servo Spare Parts: Repair, Surplus Sourcin
 slug: obsolete-automation-spare-parts-sourcing-repair-guide
 type: BLOG
 category: suppliers-services
-author: edword
+author: edward
 tags: Obsolete parts, Automation repair, CNC spare parts, FANUC, Servo amplifiers, Siemens HMI, Mitsubishi FX
 publishedAt: 2026-11-19T09:00:00Z
 excerpt: Industrial machines routinely outlive their original electronics by 15 years. Learn how to manage OEM lifecycle phases, verify surplus and refurbished PLCs, HMIs and FANUC servo drives, decide between repair and retrofit, and protect production uptime.
 seoTitle: Managing Obsolete PLC, HMI & Servo Spare Parts: Guide
 seoDescription: Plant maintenance playbook for obsolete PLCs, HMIs and CNC servo drives: OEM lifecycle phases, surplus verification, capacitor reforming and repair vs retrofit.
+coverImage: /media/2026/11/cover-obsolete-automation-spare-parts-sourcing-repair-guide.jpg
+coverAlt: Industrial spare-parts lifecycle illustration depicting legacy PLC modules, bench diagnostics, and retrofit planning
+coverCaption: Proactive obsolescence matrices let plants choose rationally between component-level repair, tested surplus stock, and planned retrofits.
 ---
 Mechanical frames, cast-iron CNC beds, hydraulic presses and stainless-steel packaging turrets regularly run reliably for **25 to 35 years**. The electronics inside their control cabinets — PLCs, operator panels, servo amplifiers and I/O cards — are typically discontinued by the original equipment manufacturer (OEM) after **10 to 15 years**.
 
@@ -28,6 +31,8 @@ Most major automation vendors publish four standard lifecycle stages (naming var
 ## Repair vs Surplus Purchase vs Full Control Retrofit
 
 When a discontinued PLC module, HMI touchscreen or servo amplifier fails, maintenance managers have three practical options — and each wins in a different scenario:
+
+![Four-stage OEM hardware lifecycle diagram (Active, Mature, Phase-Out/Limited, Discontinued/Obsolete) paired with a decision matrix comparing Board-Level Repair, Tested Surplus Sourcing, and Full Control Retrofit on downtime, cost, and risk](/media/2026/11/diagram-obsolete-automation-spare-parts-sourcing-repair-guide.png "Figure 1: Waiting until a discontinued drive fails forces emergency purchases; combining tested critical spares with scheduled repair bridges the gap to planned retrofits.")
 
 | Strategy | Typical Cost (vs New OEM) | Turnaround Time | Best Used When... | Key Risks to Manage |
 |---|---|---|---|---|
@@ -87,6 +92,8 @@ Spend two days walking your control cabinets once a year and score every major P
 
 Assets scoring at the top of that matrix become your immediate priority for **backup extraction, strategic spare sourcing, preventive repair of worn units and budgeted CapEx retrofits** — turning obsolescence from a recurring 2 a.m. emergency into a predictable engineering program.
 
+For deeper electronics-level failure analysis and a board-swap verification checklist covering legacy Siemens S7 CPUs and FANUC control PCBs, read our [industrial control board, PLC, and HMI failure modes guide](/blog/industrial-control-board-plc-hmi-lifecycle-mro-guide) and Vibocnc's MRO playbook on [managing obsolete PLC, HMI, and CNC control board spares](https://vibocnc.com/blog/obsolete-plc-hmi-cnc-control-board-mro-sourcing-repair-strategy).
+
 === takeaways
 Industrial machine mechanics commonly last 25–35 years while PLCs, HMIs and servo amplifiers reach OEM obsolescence after 10–15 years, making proactive lifecycle management essential to uptime.
 Combining stocked tested spares for emergency recovery, component-level electronic repair for cost-effective replenishment and scheduled control retrofits during turnarounds delivers the lowest lifecycle cost.
@@ -110,5 +117,6 @@ A: Confirm you have complete, tested offline backups of the editable PLC program
 === sources
 IEC 62402:2019: Obsolescence management (International Electrotechnical Commission) | https://webstore.iec.ch/
 Vcocnc — FANUC and multi-brand automation spare parts & warranty documentation | https://www.vcocncspare.com/
-Vibocnc — CNC parts center and electronic repair workflow | https://vibocnc.com/en/repair-request
+Vibocnc — CNC parts center and electronic repair workflow | https://vibocnc.com/repair-request
 IEEE Std 3006.7: Recommended Practice for Determining the Reliability of Industrial Power Systems
+Vibocnc — Managing Obsolete PLC, HMI, and CNC Control Board Spares | https://vibocnc.com/blog/obsolete-plc-hmi-cnc-control-board-mro-sourcing-repair-strategy

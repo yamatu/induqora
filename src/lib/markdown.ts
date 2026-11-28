@@ -1,5 +1,6 @@
 import { Marked, type Tokens } from "marked";
 import sanitizeHtml from "sanitize-html";
+import { mediaDimensions } from "./media";
 import { siteConfig } from "./site";
 import { slugify } from "./utils";
 
@@ -27,6 +28,13 @@ const allowedTags = [
 
 const siteHost = new URL(siteConfig.url).host;
 
+/**
+ * Supplier / vendor domains we link to commercially. Links to them stay nofollow: they are
+ * promotional references, not independent editorial citations, so they must not pass ranking
+ * signals. Add a domain here instead of hand-editing article markdown.
+ */
+const COMMERCIAL_HOSTS = ["vibocnc.com", "vcocncspare.com"];
+
 function attr(value: string) {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -50,6 +58,20 @@ function isExternal(href: string) {
   }
 }
 
+function isCommercial(href: string) {
+  try {
+    const host = new URL(href).host.replace(/^www\./i, "").toLowerCase();
+    return COMMERCIAL_HOSTS.some((h) => host === h || host.endsWith(`.${h}`));
+  } catch {
+    return false;
+  }
+}
+
+/** True when the article body promotes a listed commercial partner (used for disclosure). */
+export function hasCommercialLinks(markdown: string) {
+  return [...markdown.matchAll(/\]\((https?:\/\/[^)\s]+)/g)].some((m) => isCommercial(m[1]));
+}
+
 export function renderMarkdown(markdown: string): { html: string; toc: TocItem[] } {
   const toc: TocItem[] = [];
   const used = new Map<string, number>();
@@ -70,12 +92,16 @@ export function renderMarkdown(markdown: string): { html: string; toc: TocItem[]
       link(this: RendererThis, { href, title, tokens }: Tokens.Link) {
         const text = this.parser.parseInline(tokens);
         const t = title ? ` title="${attr(title)}"` : "";
-        const rel = isExternal(href) ? ` rel="noopener" target="_blank"` : "";
+        const rel = isExternal(href)
+          ? ` rel="${isCommercial(href) ? "nofollow noopener" : "noopener"}" target="_blank"`
+          : "";
         return `<a href="${attr(href)}"${t}${rel}>${text}</a>`;
       },
       image({ href, title, text }: Tokens.Image) {
         const caption = title ? `<figcaption>${attr(title)}</figcaption>` : "";
-        return `<figure><img src="${attr(href)}" alt="${attr(text)}" loading="lazy" decoding="async" />${caption}</figure>`;
+        const dims = mediaDimensions(href);
+        const size = dims ? ` width="${dims.width}" height="${dims.height}"` : "";
+        return `<figure><img src="${attr(href)}" alt="${attr(text)}" loading="lazy" decoding="async"${size} />${caption}</figure>`;
       },
       table(this: RendererThis, token: Tokens.Table) {
         const head = token.header.map((c) => `<th>${this.parser.parseInline(c.tokens)}</th>`).join("");

@@ -5,6 +5,7 @@ import { mkdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
+import { revalidateAllSiteContent } from "@/lib/revalidate";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -22,8 +23,10 @@ function str(fd: FormData, key: string) {
   return String(fd.get(key) ?? "").trim();
 }
 
-function revalidateSite() {
-  revalidatePath("/", "layout");
+async function revalidateSite(slug?: string) {
+  // Purges home, listings, feeds, taxonomy archives and the admin panel itself,
+  // so the dashboard count is never left showing a stale article total.
+  await revalidateAllSiteContent(slug);
 }
 
 /* ---------- Auth ---------- */
@@ -201,15 +204,15 @@ export async function savePost(_prev: ActionState, fd: FormData): Promise<Action
     savedId = created.id;
   }
 
-  revalidateSite();
+  await revalidateSite(input.slug);
   if (!id) redirect(`/admin/posts/${savedId}?saved=1`);
   return { ok: true, message: data.status === "PUBLISHED" ? "Article saved and published." : "Draft saved." };
 }
 
 export async function deletePost(fd: FormData) {
   await requireUser();
-  await db.post.delete({ where: { id: str(fd, "id") } });
-  revalidateSite();
+  const removed = await db.post.delete({ where: { id: str(fd, "id") }, select: { slug: true } });
+  await revalidateSite(removed.slug);
   redirect("/admin/posts");
 }
 
@@ -231,7 +234,7 @@ export async function saveCategory(_prev: ActionState, fd: FormData): Promise<Ac
   if (clash) return { ok: false, message: "Another category already uses this slug." };
   if (id) await db.category.update({ where: { id }, data });
   else await db.category.create({ data });
-  revalidateSite();
+  await revalidateSite();
   redirect("/admin/categories");
 }
 
@@ -241,7 +244,7 @@ export async function deleteCategory(fd: FormData) {
   const count = await db.post.count({ where: { categoryId: id } });
   if (count > 0) redirect(`/admin/categories?error=${encodeURIComponent(`This category still has ${count} article(s). Move them first.`)}`);
   await db.category.delete({ where: { id } });
-  revalidateSite();
+  await revalidateSite();
   redirect("/admin/categories");
 }
 
@@ -256,14 +259,14 @@ export async function saveTag(_prev: ActionState, fd: FormData): Promise<ActionS
   if (clash) return { ok: false, message: "Another tag already uses this slug." };
   if (id) await db.tag.update({ where: { id }, data });
   else await db.tag.create({ data });
-  revalidateSite();
+  await revalidateSite();
   redirect("/admin/tags");
 }
 
 export async function deleteTag(fd: FormData) {
   await requireUser();
   await db.tag.delete({ where: { id: str(fd, "id") } });
-  revalidateSite();
+  await revalidateSite();
   redirect("/admin/tags");
 }
 
@@ -294,7 +297,7 @@ export async function saveAuthor(_prev: ActionState, fd: FormData): Promise<Acti
   if (clash) return { ok: false, message: "Another author already uses this slug." };
   if (id) await db.author.update({ where: { id }, data });
   else await db.author.create({ data });
-  revalidateSite();
+  await revalidateSite();
   redirect("/admin/authors");
 }
 
@@ -304,7 +307,7 @@ export async function deleteAuthor(fd: FormData) {
   const count = await db.post.count({ where: { authorId: id } });
   if (count > 0) redirect(`/admin/authors?error=${encodeURIComponent(`This author still has ${count} article(s). Reassign them first.`)}`);
   await db.author.delete({ where: { id } });
-  revalidateSite();
+  await revalidateSite();
   redirect("/admin/authors");
 }
 

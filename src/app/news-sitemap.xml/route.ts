@@ -15,6 +15,12 @@ export async function GET() {
     take: 1000,
   });
 
+  // An empty sitemap is an error in Search Console. 404 tells crawlers to drop it until the
+  // next news post lands, and robots.txt stops advertising it in the meantime.
+  if (posts.length === 0) {
+    return new Response("No news articles within the last 48 hours", { status: 404 });
+  }
+
   const items = posts
     .map(
       (p) => `  <url>

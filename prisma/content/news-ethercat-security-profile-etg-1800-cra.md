@@ -3,13 +3,16 @@ title: ETG Releases ETG.1800 EtherCAT Security Profile for IEC 62443 SL 2 and EU
 slug: etg-releases-ethercat-security-profile-etg-1800-cra-compliance
 type: NEWS
 category: industrial-networking
-author: edword
+author: edward
 tags: EtherCAT, IEC 62443, Cyber Resilience Act, Industrial Ethernet, OT security, EU regulation
 publishedAt: 2026-11-22T18:00:00Z
 featured: true
 excerpt: The EtherCAT Technology Group has published ETG.1800 v1.0, showing how 25 existing EtherCAT functions satisfy IEC 62443-3-3 Security Level 2 without protocol or hardware changes roughly one year ahead of full EU Cyber Resilience Act enforcement.
 seoTitle: ETG Releases ETG.1800 EtherCAT Security Profile for CRA
 seoDescription: ETG.1800 v1.0 maps 25 existing EtherCAT functions to IEC 62443-3-3 Security Level 2, giving OEMs a hardware-free path toward EU Cyber Resilience Act readiness.
+coverImage: /media/2026/11/cover-etg-releases-ethercat-security-profile-etg-1800-cra-compliance.jpg
+coverAlt: EtherCAT industrial Ethernet security profile illustration showing ETG.1800 compliance with IEC 62443 SL 2 without hardware redesign
+coverCaption: ETG.1800 v1.0 gives machine builders a hardware-free blueprint for mapping deployed EtherCAT architectures to IEC 62443-3-3 SL 2.
 ---
 The **EtherCAT Technology Group (ETG)** has published version 1.0 of the **ETG.1800 EtherCAT Security Profile** in November 2026, providing machine builders and device manufacturers with a formal specification for meeting **IEC 62443-3-3 Security Level 2 (SL 2)** requirements without modifying the underlying EtherCAT protocol or replacing field hardware.
 
@@ -25,6 +28,8 @@ Under both [IEC 62443](/blog/iec-62443-explained) and the EU CRA, manufacturers 
 ## Three blueprint threat scenarios in ETG.1800
 
 Recognizing that threat levels vary by installation, ETG.1800 structures risk assessment around **three standardized blueprint scenarios** that OEMs and plant operators can use as templates for machine-specific risk evaluations:
+
+![Three-tier EtherCAT security architecture diagram depicting Scenario 1 (protected machine perimeter with existing hardware achieving IEC 62443 SL 2 via 25 EtherCAT functions), Scenario 2 (segmented/external bus links), and Scenario 3 (untrusted shared infrastructure roadmap)](/media/2026/11/diagram-etg-releases-ethercat-security-profile-etg-1800-cra-compliance.png "Figure 1: Existing EtherCAT devices satisfy IEC 62443-3-3 SL 2 under Scenario 1 by pairing secured controller perimeters with EtherCAT's deterministic topology checks.")
 
 | Blueprint Scenario | Assumed Environment & Threat Model | Target Security Level | Required Changes to Existing EtherCAT Devices |
 |---|---|---|---|

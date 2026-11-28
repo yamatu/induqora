@@ -2,9 +2,12 @@ import type { MetadataRoute } from "next";
 import { db } from "@/lib/db";
 import { publishedWhere } from "@/lib/posts";
 import { effectiveModifiedDate } from "@/lib/seo";
-import { absoluteUrl, postPath } from "@/lib/site";
+import { absoluteUrl, postPath, siteConfig } from "@/lib/site";
 
 export const revalidate = 3600;
+
+/** Mirrors INDEX_MIN_POSTS in the tag route: thinner tags are noindex, so they leave the sitemap too. */
+const TAG_INDEX_MIN_POSTS = 3;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, categories, tags, authors] = await Promise.all([
@@ -39,8 +42,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
   const policyDate = new Date("2026-11-22T00:00:00.000Z");
 
+  // Next.js emits the home canonical as the bare origin (no trailing slash), so keep the
+  // sitemap entry identical instead of the "https://host/" form they used to disagree on.
   const staticPages: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), lastModified: latest, changeFrequency: "hourly", priority: 1 },
+    { url: siteConfig.url, lastModified: latest, changeFrequency: "hourly", priority: 1 },
     { url: absoluteUrl("/news"), lastModified: latestOf("NEWS"), changeFrequency: "hourly", priority: 0.9 },
     { url: absoluteUrl("/blog"), lastModified: latestOf("BLOG"), changeFrequency: "daily", priority: 0.9 },
     { url: absoluteUrl("/topics"), lastModified: latest, changeFrequency: "weekly", priority: 0.7 },
@@ -61,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })),
     ...tags
-      .filter((t) => t._count.posts >= 2)
+      .filter((t) => t._count.posts >= TAG_INDEX_MIN_POSTS)
       .map((t) => ({
         url: absoluteUrl(`/tag/${t.slug}`),
         lastModified: t.posts[0] ? effectiveModifiedDate(t.posts[0]) : latest,

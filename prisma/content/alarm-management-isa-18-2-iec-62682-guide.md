@@ -3,12 +3,15 @@ title: Industrial Alarm Management (ISA-18.2 / IEC 62682): Stopping Alarm Floods
 slug: alarm-management-isa-18-2-iec-62682-guide
 type: BLOG
 category: process-automation-dcs
-author: edword
+author: edward
 tags: DCS, SCADA, Process control, HMI, Alarm management
 publishedAt: 2026-11-08T09:00:00Z
 excerpt: When a control room faces hundreds of alarms per hour, operators cannot distinguish a critical safety threat from nuisance noise. Learn the ANSI/ISA-18.2 and IEC 62682 alarm lifecycle, KPI benchmarks, rationalization rules and engineering techniques to eliminate alarm floods.
 seoTitle: ISA-18.2 & IEC 62682 Alarm Management Practical Guide
 seoDescription: Stop alarm floods in DCS and SCADA control rooms with ANSI/ISA-18.2 / IEC 62682: KPI targets, rationalization, deadbands, shelving and state-based alarming.
+coverImage: /media/2026/11/cover-alarm-management-isa-18-2-iec-62682-guide.jpg
+coverAlt: Process control alarm rate dashboard illustration showing ISA-18.2 KPI thresholds and priority distribution
+coverCaption: Rationalized alarm systems keep operator rates under 150 alarms per day so abnormal plant upsets stand out immediately.
 ---
 In major industrial incident investigations — from refinery explosions to water treatment failures — a recurring finding appears in the control room historian: **the critical warning was there, buried inside hundreds of nuisance alarms flashing simultaneously**. When an alarm system cries wolf every thirty seconds, human operators do the only thing they can to survive a shift: acknowledge everything reflexively and tune out the horn.
 
@@ -29,6 +32,8 @@ Enforcing this single rule during an alarm rationalization workshop routinely el
 ## ISA-18.2 / IEC 62682 KPI benchmarks
 
 The standard defines quantitative performance targets measured across each operator console. Comparing your historian's monthly alarm dump against these benchmarks tells you immediately whether the alarm system is predictable or overloaded:
+
+![Engineering benchmark chart displaying ISA-18.2 alarm rate targets (<150 per day, <6 per hour, <10 per 10-minute flood threshold) and target 80% Low, 15% Medium, 5% High priority split](/media/2026/11/diagram-alarm-management-isa-18-2-iec-62682-guide.png "Figure 1: Plants experiencing >10 alarms in any 10-minute window are in an alarm flood; rationalization and deadbands restore operator situational awareness.")
 
 | Alarm Performance Metric | Target (Acceptable / Predictable) | Maximum Manageable | Typical Unmanaged Plant |
 |---|---|---|---|

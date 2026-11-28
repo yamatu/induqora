@@ -3,12 +3,15 @@ title: Diagnosing Servo Drive Alarms: Overcurrent, Overvoltage, Regeneration and
 slug: servo-drive-alarm-troubleshooting-cnc-maintenance
 type: BLOG
 category: motion-control-drives
-author: edword
+author: edward
 tags: Servo drives, Servo amplifiers, Motion control, FANUC, Automation repair, CNC spare parts
 publishedAt: 2026-11-02T09:00:00Z
 excerpt: When a CNC machine or packaging axis stops with a servo drive alarm, swapping the amplifier without finding the root cause often destroys the replacement unit too. Learn a methodical field workflow for overcurrent, DC bus overvoltage, regeneration, overload and encoder faults.
 seoTitle: Diagnosing Servo Drive Alarms: Practical Field Guide
 seoDescription: Field troubleshooting guide for CNC and servo drive alarms: overcurrent, DC bus overvoltage, braking resistor faults, thermal overload and encoder EMI noise.
+coverImage: /media/2026/11/cover-servo-drive-alarm-troubleshooting-cnc-maintenance.jpg
+coverAlt: Oscilloscope waveform and servo amplifier diagnostic graphic showing phase current, DC bus voltage, and encoder signals
+coverCaption: Structured isolation separates drive power-stage faults from motor winding shorts, braking resistor failures, and encoder noise.
 ---
 Few faults stop a machine shop or automated production line faster than a tripped **servo drive** (or **servo amplifier**). Under pressure to restart production, the most expensive reflex in plant maintenance is immediately ordering a replacement amplifier, bolting it into the rack and powering up — only to watch a shorted motor cable or failed brake blow the brand-new IGBT stage in half a second.
 
@@ -27,6 +30,8 @@ Whether you maintain FANUC Alpha/Beta CNC amplifiers, Siemens SINAMICS, Rockwell
 | **5. DC Bus Undervoltage / Phase Loss** | UV, `AL-04` / `AL-06`, `F30003`, `A.410` | Tripped upstream breaker, blown input fuse, loose 3-phase terminal, single-phasing utility dip, faulty main contactor auxiliary | Failed pre-charge resistor/relay or bridge rectifier inside power supply module |
 
 ## Step-by-step field diagnostic workflow
+
+![Five-step diagnostic flowchart for isolating CNC servo drive alarms across alarm capture, DC bus check, load disconnect, insulation testing, and repair-vs-replace verdict](/media/2026/11/diagram-servo-drive-alarm-troubleshooting-cnc-maintenance.png "Figure 1: Step-by-step field diagnostic flow prevents replacing healthy drives when the root cause is a shorted motor cable or degraded braking resistor.")
 
 ### Step 1: Record the exact alarm history before cycling power
 
@@ -80,6 +85,8 @@ Once electrical testing confirms the **servo amplifier itself** has failed (blow
 
 And if you are specifying new axes from scratch, understanding drive physics up front — see [VFD vs Servo Drive selection](/blog/vfd-vs-servo-drive-selection-guide) — avoids undersized regeneration capacity and fragile feedback layouts from day one.
 
+For a CNC bench-test and nameplate verification checklist focused on FANUC, Mitsubishi, and Yaskawa servo amplifiers — plus common DC bus troubleshooting — see our [CNC power supply and spindle drive diagnostics guide](/blog/cnc-spindle-drive-power-supply-bus-diagnostics) and Vcocnc's shop-floor walkthrough on [diagnosing CNC servo drive overcurrent, DC bus overvoltage, and regeneration faults](https://www.vcocncspare.com/news/diagnosing-cnc-servo-drive-overcurrent-overvoltage-regeneration-faults).
+
 === takeaways
 Always isolate motor winding insulation, cable integrity and holding-brake release before installing a replacement servo amplifier, or an external short can immediately destroy the new drive.
 Verify zero volts on the DC bus capacitors with a rated meter before disconnecting motor leads or braking resistors, and never apply a megohmmeter directly to servo drive terminals.
@@ -105,3 +112,4 @@ IEC 61800-5-1: Adjustable speed electrical power drive systems — Part 5-1: Saf
 IEC 61800-3: Adjustable speed electrical power drive systems — Part 3: EMC requirements and specific test methods
 IEEE Std 43-2013: IEEE Recommended Practice for Testing Insulation Resistance of Electric Machinery | https://standards.ieee.org/
 FANUC, Siemens SINAMICS and Yaskawa Sigma Maintenance & Troubleshooting Reference Documentation
+Vcocnc — Diagnosing CNC Servo Drive Overcurrent, DC Bus Overvoltage, and Regeneration Faults | https://www.vcocncspare.com/news/diagnosing-cnc-servo-drive-overcurrent-overvoltage-regeneration-faults

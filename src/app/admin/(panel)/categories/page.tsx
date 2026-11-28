@@ -5,6 +5,9 @@ import { ActionForm } from "../ActionForm";
 
 export const metadata = { title: "Categories" };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Props = { searchParams: Promise<{ edit?: string; error?: string }> };
 
 export default async function CategoriesAdmin({ searchParams }: Props) {

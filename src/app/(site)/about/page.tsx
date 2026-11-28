@@ -7,7 +7,11 @@ import { siteConfig } from "@/lib/site";
 const intro =
   "Induqora is an independent publication covering industrial automation and control — the PLCs, control systems, networks and software that run factories, process plants and critical infrastructure.";
 
-export const metadata: Metadata = pageMetadata({ title: "About Induqora", description: intro, path: "/about" });
+// Kept under 160 characters so Google does not truncate the snippet on /about.
+const metaDescription =
+  "Induqora is an independent publication covering industrial automation and control: PLCs, DCS, SCADA, networks and the software that runs modern plants.";
+
+export const metadata: Metadata = pageMetadata({ title: "About Induqora", description: metaDescription, path: "/about" });
 
 export default function AboutPage() {
   return (
