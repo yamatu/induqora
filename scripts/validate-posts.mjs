@@ -100,10 +100,11 @@ const warn = (file, msg) => warnings.push(`${file}: ${msg}`);
 
 /* ------------------------------------------------------------------- checks */
 
-const files = readdirSync(CONTENT_DIR)
+const allFiles = readdirSync(CONTENT_DIR)
   .filter((f) => f.endsWith(".md"))
-  .filter((f) => !only.length || only.includes(f))
   .sort();
+
+const files = allFiles.filter((f) => !only.length || only.includes(f));
 
 if (!files.length) {
   console.error(`No markdown files matched in ${CONTENT_DIR}`);
@@ -201,7 +202,10 @@ for (const file of files) {
   }
 
   const takeaways = block("takeaways");
-  const takeawayLines = takeaways.split("\n").filter((l) => /^[-*]\s+/.test(l.trim()));
+  // Runtime parses takeaways with parseLines() in src/lib/utils.ts: every
+  // non-empty line is an entry, bullet or not. The old bullet-only rule
+  // reported "0 takeaways" for all 63 articles on the site.
+  const takeawayLines = takeaways.split("\n").map((l) => l.trim()).filter(Boolean);
   if (takeawayLines.length < LIMITS.minTakeaways) {
     warn(file, `only ${takeawayLines.length} takeaways (min ${LIMITS.minTakeaways})`);
   }
@@ -215,8 +219,15 @@ for (const file of files) {
   const sources = block("sources").split("\n").filter(Boolean);
   if (!sources.length) warn(file, "no === sources block");
 
-  // --- tag inventory (weak tags are noindex) ------------------------------
-  for (const name of (meta.tags || "").split(",").map((t) => t.trim()).filter(Boolean)) {
+}
+
+// --- tag inventory (weak tags are noindex) --------------------------------
+// Counted over every article on disk: a tag used by 9 existing posts must not
+// look weak just because the CLI only passed the file being published.
+for (const file of allFiles) {
+  const doc = parseFrontmatter(readFileSync(path.join(CONTENT_DIR, file), "utf8"));
+  if (!doc) continue;
+  for (const name of (doc.meta.tags || "").split(",").map((t) => t.trim()).filter(Boolean)) {
     const slug = slugifyTag(name);
     if (!tagCount.has(slug)) tagCount.set(slug, new Set());
     tagCount.get(slug).add(file);

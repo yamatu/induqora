@@ -16,10 +16,11 @@ import { ARTICLE_VISUALS_BATCH5 } from "./visual-specs-batch5.mjs";
 import { ARTICLE_VISUALS_BATCH6 } from "./visual-specs-batch6.mjs";
 import { ARTICLE_VISUALS_BATCH7 } from "./visual-specs-batch7.mjs";
 import { ARTICLE_VISUALS_BATCH8 } from "./visual-specs-batch8.mjs";
+import { ARTICLE_VISUALS_BATCH9 } from "./visual-specs-batch9.mjs";
 import { renderCoverSvg } from "./render-covers.mjs";
 import { renderDiagramSvg } from "./render-diagrams.mjs";
 
-const ALL_VISUALS = [...ARTICLE_VISUALS, ...ARTICLE_VISUALS_BATCH2, ...ARTICLE_VISUALS_BATCH3, ...ARTICLE_VISUALS_BATCH4, ...ARTICLE_VISUALS_BATCH5, ...ARTICLE_VISUALS_BATCH6, ...ARTICLE_VISUALS_BATCH7, ...ARTICLE_VISUALS_BATCH8];
+const ALL_VISUALS = [...ARTICLE_VISUALS, ...ARTICLE_VISUALS_BATCH2, ...ARTICLE_VISUALS_BATCH3, ...ARTICLE_VISUALS_BATCH4, ...ARTICLE_VISUALS_BATCH5, ...ARTICLE_VISUALS_BATCH6, ...ARTICLE_VISUALS_BATCH7, ...ARTICLE_VISUALS_BATCH8, ...ARTICLE_VISUALS_BATCH9];
 const MEDIA_SUBDIR = "2026/11";
 
 function mediaUrl(filename) {

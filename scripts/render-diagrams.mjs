@@ -8,6 +8,7 @@ import { renderDiagramBodyF } from "./render-diagrams-f.mjs";
 import { renderDiagramBodyG } from "./render-diagrams-g.mjs";
 import { renderDiagramBodyH } from "./render-diagrams-h.mjs";
 import { renderDiagramBodyI } from "./render-diagrams-i.mjs";
+import { renderDiagramBodyJ } from "./render-diagrams-j.mjs";
 
 const SANS = "DejaVu Sans, sans-serif";
 const MONO = "DejaVu Sans Mono, monospace";
@@ -24,7 +25,7 @@ export function renderDiagramSvg(article, diagramOverride) {
   const d = diagramOverride || article.diagram;
   // Check D, C and A before B because B has a trailing default fallback for advisory-mitigation.
   const body =
-    renderDiagramBodyI(d) ?? renderDiagramBodyH(d) ?? renderDiagramBodyG(d) ?? renderDiagramBodyF(d) ?? renderDiagramBodyE(d) ?? renderDiagramBodyD(d) ?? renderDiagramBodyC(d) ?? renderDiagramBodyA(d) ?? renderDiagramBodyB(d);
+    renderDiagramBodyJ(d) ?? renderDiagramBodyI(d) ?? renderDiagramBodyH(d) ?? renderDiagramBodyG(d) ?? renderDiagramBodyF(d) ?? renderDiagramBodyE(d) ?? renderDiagramBodyD(d) ?? renderDiagramBodyC(d) ?? renderDiagramBodyA(d) ?? renderDiagramBodyB(d);
   if (!body) throw new Error(`Unknown diagram type: ${d.type}`);
   const figLabel = d.figLabel || "FIG. 1";
 

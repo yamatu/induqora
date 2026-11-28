@@ -1,5 +1,5 @@
 ---
-title: Safety Instrumented Systems (SIS) and SIL Levels: An Engineer's Guide to IEC 61511
+title: SIS and SIL Levels: IEC 61511 Engineer's Guide
 slug: safety-instrumented-systems-iec-61511-sil-guide
 type: BLOG
 category: process-automation-dcs
@@ -21,7 +21,7 @@ In oil and gas, chemical, pharmaceutical and power plants, the **Basic Process C
 
 A Safety Instrumented System is composed of one or more **Safety Instrumented Functions (SIFs)**. Every SIF includes three hardware/software subsystems working end to end:
 
-1. **Sensors:** Safety-rated pressure, level, temperature or gas transmitters (often redundant).
+1. **Sensors:** Safety-rated pressure, level, temperature or gas transmitters (often redundant). Temperature transmitters in this role carry their own failure modes; see [thermocouple cold junction compensation and drift](/blog/thermocouple-cold-junction-compensation-drift-guide) and [Pt100 lead resistance error](/blog/pt100-rtd-2-3-4-wire-lead-resistance-error-guide).
 2. **Logic solver:** A certified safety PLC (such as Triconex, HIMA, Siemens S7-1500F/400FH or Yokogawa ProSafe-RS) running validated safety logic with continuous internal diagnostics.
 3. **Final elements:** Shutdown valves (ESDVs), solenoid valves or motor circuit breakers that physically isolate energy or feed flow.
 
