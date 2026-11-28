@@ -68,10 +68,10 @@ const categories = [
 
 const authors = [
   {
-    slug: "edword",
-    name: "Edword",
+    slug: "edward",
+    name: "Edward",
     jobTitle: "Editor, Induqora",
-    bio: "Edword writes and edits Induqora's coverage of industrial automation and control, including PLC programming, industrial networking, OT cybersecurity, process control and the regulation that shapes the automation industry.",
+    bio: "Edward writes and edits Induqora's coverage of industrial automation and control, including PLC programming, industrial networking, OT cybersecurity, process control and the regulation that shapes the automation industry.",
     expertise: "PLC programming, Industrial networking, OT cybersecurity, Process control, Automation regulation",
   },
 ];
@@ -109,6 +109,51 @@ function readingMinutes(markdown) {
   return Math.max(1, Math.round(markdown.split(/\s+/).filter(Boolean).length / 230));
 }
 
+async function revalidateRunningServer() {
+  const secret = process.env.AUTH_SECRET;
+  if (!secret) return;
+  const base = `http://127.0.0.1:${process.env.PORT || 3000}`;
+  try {
+    const res = await fetch(`${base}/api/revalidate`, {
+      method: "POST",
+      headers: { "x-revalidate-secret": secret },
+      signal: AbortSignal.timeout(5000),
+    });
+    if (res.ok) {
+      console.log("Revalidated live Next.js cache.");
+    } else {
+      console.warn(`Cache revalidation returned HTTP ${res.status}`);
+    }
+  } catch {
+    // Expected during first-run bootstrap before server.js starts listening.
+  }
+}
+
+/** Resolve a category/author slug with an actionable error message.
+ *  findUniqueOrThrow used to surface a bare Prisma "record not found" after
+ *  other posts in the same batch had already been imported. */
+async function requireCategory(slug, file) {
+  const row = await db.category.findUnique({ where: { slug } });
+  if (row) return row;
+  const valid = (await db.category.findMany({ select: { slug: true } })).map((c) => c.slug).sort();
+  throw new Error(
+    `${file}: category "${slug}" does not exist.\n` +
+      `  Valid categories: ${valid.join(", ")}\n` +
+      `  Hint: categories are defined in the \`categories\` array of prisma/seed.mjs.`
+  );
+}
+
+async function requireAuthor(slug, file) {
+  const row = await db.author.findUnique({ where: { slug } });
+  if (row) return row;
+  const valid = (await db.author.findMany({ select: { slug: true } })).map((a) => a.slug).sort();
+  throw new Error(
+    `${file}: author "${slug}" does not exist.\n` +
+      `  Valid authors: ${valid.join(", ")}\n` +
+      `  Hint: authors are defined in the \`authors\` array of prisma/seed.mjs.`
+  );
+}
+
 async function main() {
   const email = (process.env.ADMIN_EMAIL || "admin@induqora.com").toLowerCase();
   const password = process.env.ADMIN_PASSWORD;
@@ -127,13 +172,36 @@ async function main() {
   }
 
   const dir = path.join(import.meta.dirname, "content");
+  const rawArgs = process.argv.slice(2);
+  const skipRevalidate = rawArgs.includes("--no-revalidate");
   // Optional CLI args limit the import to specific files, e.g. `node prisma/seed.mjs new-article.md`.
-  const only = process.argv.slice(2);
+  const only = rawArgs.filter((a) => !a.startsWith("--"));
   const files = readdirSync(dir).filter((f) => f.endsWith(".md") && (!only.length || only.includes(f)));
+  if (only.length && files.length !== only.length) {
+    const missing = only.filter((f) => !files.includes(f));
+    throw new Error(`Markdown file(s) not found in ${dir}: ${missing.join(", ")}`);
+  }
+
+  const now = Date.now();
+  const futuristic = [];
+  const noSlugMatch = [];
+
   for (const file of files) {
     const { meta, body, takeaways, faqs, sources } = parseArticle(readFileSync(path.join(dir, file), "utf8"));
-    const category = await db.category.findUniqueOrThrow({ where: { slug: meta.category } });
-    const author = await db.author.findUniqueOrThrow({ where: { slug: meta.author } });
+
+    // A slug that does not match the filename produces a URL nobody can guess
+    // and silently orphans the previous file of the same name.
+    const stem = path.basename(file, ".md");
+    if (meta.slug !== stem) noSlugMatch.push(`${file} -> slug "${meta.slug}"`);
+
+    // publishedWhere() filters publishedAt <= now, so a future timestamp means
+    // the row exists but every public URL 404s. This shipped once; warn loudly.
+    const publishedAt = new Date(meta.publishedAt);
+    if (Number.isNaN(publishedAt.getTime())) throw new Error(`${file}: publishedAt "${meta.publishedAt}" is not a date`);
+    if (publishedAt.getTime() > now + 60_000) futuristic.push(`${file} (${meta.publishedAt})`);
+
+    const category = await requireCategory(meta.category, file);
+    const author = await requireAuthor(meta.author, file);
 
     const tagIds = [];
     for (const name of (meta.tags || "").split(",").map((t) => t.trim()).filter(Boolean)) {
@@ -142,7 +210,6 @@ async function main() {
       tagIds.push(tag.id);
     }
 
-    const publishedAt = new Date(meta.publishedAt);
     const data = {
       title: meta.title,
       type: meta.type,
@@ -152,6 +219,9 @@ async function main() {
       keyTakeaways: takeaways,
       faqs: JSON.stringify(faqs),
       sources: JSON.stringify(sources),
+      coverImage: meta.coverImage || "",
+      coverAlt: meta.coverAlt || "",
+      coverCaption: meta.coverCaption || "",
       seoTitle: meta.seoTitle || "",
       seoDescription: meta.seoDescription || "",
       featured: meta.featured === "true",
@@ -168,6 +238,21 @@ async function main() {
       create: { slug: meta.slug, ...data, tags: { connect: tagIds.map((id) => ({ id })) } },
     });
     console.log(`Seeded ${meta.type.padEnd(4)} ${meta.slug}`);
+  }
+
+  if (noSlugMatch.length) {
+    console.warn(`\nWarning: slug does not match filename (URL differs from the .md name):\n  ${noSlugMatch.join("\n  ")}`);
+  }
+  if (futuristic.length) {
+    console.warn(
+      `\nWarning: publishedAt is in the future for ${futuristic.length} file(s). ` +
+        `publishedWhere() filters publishedAt <= now, so these URLs will return 404 until that time passes:\n  ` +
+        futuristic.join("\n  ")
+    );
+  }
+
+  if (!skipRevalidate) {
+    await revalidateRunningServer();
   }
 }
 
